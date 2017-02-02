@@ -1,9 +1,40 @@
-nav{
-  background-color: black;
-  color: orange;
-  font-family: Tahoma;
-  font-size: 3em;
+html{
+  background: #9e0800;
 }
-a{
-  color: red;
+
+ul, nav{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+li{
+  float: left; 
+}
+
+li, a{
+  display: block;
+  color: white;
+  text-align: center;
+  font-size: 1.23em;
+  padding: 1% 1%;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  text-decoration: none;
+}
+a:hover:not(.active) {
+  background-color: #111;
+}
+iframe{
+  padding: 0.2em;
+  background: black;
+  margin: auto;
+  width: 99.2%;
+  height: 126px
+}
+
+@media screen and (max-width: 600px){
+  ul, li{
+    float: none;
+  }
 }
