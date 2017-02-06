@@ -32,15 +32,14 @@ iframe{
   width: 99.2%;
   height: 126px
 }
+figure, img{
+  background: grey;
+  width: 520px;
+  height: 120px;
+}
 
 @media screen and (max-width: 600px){
   ul, li{
     float: none;
   }
-}
-
-figure, img{
-  background: grey;
-  width: 520px;
-  height: 120px;
 }
