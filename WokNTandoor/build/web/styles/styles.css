@@ -38,3 +38,9 @@ iframe{
     float: none;
   }
 }
+
+figure, img{
+  background: grey;
+  width: 520px;
+  height: 120px;
+}
