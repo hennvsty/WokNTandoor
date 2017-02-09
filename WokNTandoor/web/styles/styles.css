@@ -30,16 +30,59 @@ iframe{
   background: black;
   margin: auto;
   width: 99.2%;
-  height: 126px
+  height: 126px;
 }
-figure, img{
+figure, img, a.homepage{
+  position: relative;
   background: grey;
-  width: 520px;
+  width: 100%;
   height: 120px;
+  margin-left: 0px;
+  background: #9e080;
+  margin-bottom: 0px;
+  padding: 0px;
 }
 
+iframe.map{
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
+ul.topnav li.icon {display: none;}
+
 @media screen and (max-width: 600px){
+  
+  figure{
+    display: none;
+  }
   ul, li{
     float: none;
   }
+  iframe.map{
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  ul.topnav li {display: none;}
+  ul.topnav li.icon {
+    float: left;
+    display: inline-block;
+  }
+  
+  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: left;
+  }
+  
 }

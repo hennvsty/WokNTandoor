@@ -4,18 +4,43 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html >
+<html>
     <head>
         <title>About</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="image/x-icon" href="icon.png" />
         <link rel="stylesheet" href="styles/styles.css"/>
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
+            }
+        </script>
     </head>
+    <header>
+        <figure>
+            <a class ="homepage" href="homepage.xhtml"><img class ="logo" src="banner.png" alt="Wok n Tandoor Logo"/></a>
+        </figure>
+        <ul class="topnav" id="myTopnav">
+            <li><a href = "Menu.xhtml">Menu</a></li>
+            <li><a href = "Order.xhtml">Order Now</a></li>
+            <li><a href = "News.xhtml">News</a></li>
+            <li><a href = "About.html">About</a></li> 
+            <li class="icon">
+                <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()">☰</a>
+            </li>
+        </ul>
+    </header>
     <body>
-        <div>Location</div>
-        <iframe width="600" height="450" frameborder="0" style="border:0" 
+        <h1>Location</h1>
+        <iframe class ="map" width="600" height="450" frameborder="0" style="border:0" 
             src="https://www.google.com/maps/embed/v1/place?q=wok%20n%20tandoor%20tustin&key=AIzaSyDkJpYMg4FIG3JN6k_soG-7Ukg2IkUmssY" allowfullscreen>
-        </iframe> 
+        </iframe>
+        <a class="twitter-timeline" href="https://twitter.com/WokntandoorOC">Tweets by WokntandoorOC</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     </body>
 </html>
