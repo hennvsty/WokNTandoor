@@ -64,25 +64,40 @@ ul.topnav li.icon {display: none;}
     width: 100%;
     height: 100%;
   }
+  
+  ul.topnav{
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+  }
+  
   ul.topnav li {display: none;}
   ul.topnav li.icon {
     float: left;
     display: inline-block;
   }
   
-  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive {
+    z-index: 1;
+    width: 100%;
+  }
   ul.topnav.responsive li.icon {
-    position: absolute;
-    right: 0;
-    top: 0;
+    float: left;
+    position: fixed;
+    top: 3px;
+    left: 3px;
   }
   ul.topnav.responsive li {
     float: none;
     display: inline;
+    padding: 0;
+    margin: 0;
   }
   ul.topnav.responsive li a {
     display: block;
-    text-align: left;
+    text-align: center;
   }
   
 }
