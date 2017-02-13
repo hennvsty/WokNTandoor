@@ -22,9 +22,9 @@ li, a{
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   text-decoration: none;
 }
-a:hover:not(.active) {
+/*a:hover:not(.active) {
   background-color: #111;
-}
+}*/
 iframe{
   padding: 0.2em;
   background: black;
@@ -35,12 +35,28 @@ iframe{
 figure, img, a.homepage{
   position: relative;
   background: grey;
-  width: 100%;
-  height: 120px;
+  width: auto;
+  height: auto;
   margin-left: 0px;
-  background: #9e080;
+  background: #9e0800;
   margin-bottom: 0px;
   padding: 0px;
+}
+
+#homepage{
+    position: relative;
+    display: block;
+    margin: auto 560px;
+    z-index: 1;
+}
+#header{
+    position: relative;
+    width: auto;
+    height: 86px;
+    margin-top: -38px;
+    background-image: url("../header.png");
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 iframe.map{
