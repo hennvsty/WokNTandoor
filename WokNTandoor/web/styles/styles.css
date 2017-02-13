@@ -12,7 +12,6 @@ ul, nav{
 li{
   float: left; 
 }
-
 li, a{
   display: block;
   color: white;
@@ -22,9 +21,9 @@ li, a{
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   text-decoration: none;
 }
-/*a:hover:not(.active) {
+a:hover:not(.homepage) {
   background-color: #111;
-}*/
+}
 iframe{
   padding: 0.2em;
   background: black;
@@ -69,6 +68,21 @@ ul.topnav li.icon {display: none;}
 
 @media screen and (max-width: 600px){
   
+  body{
+    margin-top: 5em;
+  }
+  
+  #header{
+    display: none;
+  }
+  
+  a:hover.active {
+    background: #333;
+  }
+  img.active{
+    background: white;
+    width: 50px;
+  }
   figure{
     display: none;
   }
@@ -102,8 +116,8 @@ ul.topnav li.icon {display: none;}
   ul.topnav.responsive li.icon {
     float: left;
     position: fixed;
-    top: 3px;
-    left: 3px;
+    top: 5px;
+    left: 5px;
   }
   ul.topnav.responsive li {
     float: none;
