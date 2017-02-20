@@ -43,19 +43,55 @@ figure, img, a.homepage{
 }
 
 #homepage{
-    position: relative;
-    display: block;
-    margin: auto 560px;
-    z-index: 1;
+  position: relative;
+  display: block;
+  margin: auto 560px;
+  z-index: 1;
 }
+
 #header{
-    position: relative;
-    width: auto;
-    height: 86px;
-    margin-top: -38px;
-    background-image: url("../header.png");
-    background-position: center;
-    background-repeat: no-repeat;
+  position: relative;
+  width: auto;
+  height: 86px;
+  margin-top: -38px;
+  background-image: url("../header.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.news-listing article {
+    flex-flow: row nowrap;
+}
+
+.news-listing article figure {
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: 100px;
+  height: 80px;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.news-listing article header a {
+  color: pink;
+  text-align: left;
+  font-size: 22px;
+  padding: 0 0;
+}
+
+.news-listing article header .excerpt {
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 16px;
+}
+
+.news-listing article header .byline {
+  color: #ffffff;
+  font-size: 10px;
+  line-height: 16px;
+  text-transform: uppercase;
 }
 
 iframe.map{
