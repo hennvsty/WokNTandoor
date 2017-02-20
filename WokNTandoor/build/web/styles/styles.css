@@ -1,5 +1,9 @@
-html{
+html, body{
   background: #9e0800;
+  margin: 0;
+  box-sizing:border-box;
+  -ms-text-size-adjust:100%;
+  -webkit-text-size-adjust:100%;
 }
 
 ul, nav{
@@ -102,6 +106,8 @@ iframe.map{
 
 ul.topnav li.icon {display: none;}
 
+.menu:not(.Pizza) {display: none}
+
 @media screen and (max-width: 600px){
   
   body{
@@ -119,7 +125,7 @@ ul.topnav li.icon {display: none;}
     background: white;
     width: 50px;
   }
-  figure{
+  figure.wokntandoor{
     display: none;
   }
   ul, li{
@@ -137,6 +143,7 @@ ul.topnav li.icon {display: none;}
     position: fixed;
     z-index: 1;
     width: 100%;
+    opacity: 0.95;
   }
   
   ul.topnav li {display: none;}
@@ -166,6 +173,6 @@ ul.topnav li.icon {display: none;}
     text-align: center;
   }
   
-  .menu {display: none}
+  
   
 }

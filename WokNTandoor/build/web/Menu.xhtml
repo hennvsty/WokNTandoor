@@ -12,22 +12,21 @@ and open the template in the editor.
 
     <script>
         function openMenu(evt, menuName) {
-        var i, x, tablinks;
-        x = document.getElementsByClassName("menu");
-        for (i = 0; i $lt; x.length; i++) {
-            x[i].style.display = "none";
+            var i, x, tablinks;
+            x = document.getElementsByClassName("menu");
+            for (i = 0; i !== x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i !== x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+            }
+            document.getElementById(menuName).style.display = "block";
+            evt.currentTarget.firstElementChild.className += " w3-red";
         }
-        tablinks = document.getElementsByClassName("tablink");
-        for (i = 0; i $lt; x.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-        }
-        document.getElementById(menuName).style.display = "block";
-        evt.currentTarget.firstElementChild.className += " w3-red";
-    }
-    document.getElementById("myLink").click();
     </script>
     <head>
-        <title>Menu </title>
+        <title>Menu</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="shortcut icon" type="image/x-icon" href="icon.png" />
         <link rel="stylesheet" href="styles/styles.css"/>
@@ -37,13 +36,12 @@ and open the template in the editor.
         <ui:include src="nav.xhtml"/>
     </header>
     <body>
-        <div>You Hungry?</div>
         
-        <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
+    <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
   <div class="w3-content">
   
     <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">THE MENU</h1>
-    <div class="w3-row w3-center w3-border w3-border-dark-grey">
+    <div class="w3-row w3-center w3-border w3-border-dark-grey navMenu">
       <a href="javascript:void(0)" onclick="openMenu(event, 'Pizza');" id="myLink">
         <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Pizza</div>
       </a>
@@ -55,7 +53,7 @@ and open the template in the editor.
       </a>
     </div>
 
-    <div id="Pizza" class="w3-container menu w3-padding-32 w3-white">
+    <div id="Pizza" class="w3-container menu w3-padding-32 w3-white Pizza">
       <h1><b>Margherita</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$12.50</span></h1>
       <p class="w3-text-grey">Fresh tomatoes, fresh mozzarella, fresh basil</p>
       <hr />
