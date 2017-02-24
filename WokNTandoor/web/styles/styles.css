@@ -5,6 +5,11 @@ html, body{
   -ms-text-size-adjust:100%;
   -webkit-text-size-adjust:100%;
 }
+.tablink, navMenu{
+  text-decoration: none;
+  display: block;
+  background: #9e0800;  
+}
 
 ul, nav{
   list-style-type: none;
@@ -13,6 +18,7 @@ ul, nav{
   overflow: hidden;
   background-color: #333;
 }
+
 li{
   float: left; 
 }
