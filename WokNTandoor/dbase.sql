@@ -1,15 +1,19 @@
-CREATE TABLE dishes (
-    title VARCHAR(150) PRIMARY KEY,
+CREATE TABLE Menu (
+    dishName VARCHAR(150) PRIMARY KEY,
     imgpath VARCHAR(400),
     description VARCHAR(400),
-    price DECIMAL(4, 2)
+    dishPrice DECIMAL(4, 2),
+	  dishSpecialPrice DECIMAL(4, 2)
 );
 
 CREATE TABLE dish_orders (
+    orderID INT NOT NULL AUTO_INCREMENT,
     dish VARCHAR(150),
     customer_name VARCHAR(150),
     customer_phone VARCHAR(30),
-    FOREIGN KEY (dish) REFERENCES dishes(title)
+    orderPlacedTime TIMESTAMP,
+    FOREIGN KEY (dish) REFERENCES dishes(dishName),
+    PRIMARY KEY (orderID)
 );
 
 CREATE TABLE bowl_bases (
