@@ -22,7 +22,7 @@ ul, nav{
 li{
   float: left; 
 }
-li, a{
+li, a.nav, a.homepage{
   display: block;
   color: white;
   text-align: center;
@@ -31,9 +31,11 @@ li, a{
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   text-decoration: none;
 }
+
 a:hover:not(.homepage) {
   background-color: #111;
 }
+
 iframe{
   padding: 0.2em;
   background: black;
@@ -113,6 +115,10 @@ iframe.map{
 ul.topnav li.icon {display: none;}
 
 .menu:not(.ChatCorner) {display: none}
+
+.s4{
+  font-size: 21pt;
+}
 
 @media screen and (max-width: 600px){
   
