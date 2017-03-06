@@ -8,32 +8,8 @@ html, body{
 .tablink, navMenu{
   text-decoration: none;
   display: block;
-  background: #9e0800;  
-}
-
-ul, nav{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li{
-  float: left; 
-}
-li, a.nav, a.homepage{
-  display: block;
-  color: white;
-  text-align: center;
-  font-size: 1.23em;
-  padding: 1% 1%;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  text-decoration: none;
-}
-
-a:hover:not(.homepage) {
-  background-color: #111;
+  background: #9e0800;
+  margin-left: 33.333%;
 }
 
 iframe{
@@ -43,38 +19,9 @@ iframe{
   width: 99.2%;
   height: 126px;
 }
-figure, img, a.homepage{
-  position: relative;
-  background: grey;
-  width: auto;
-  height: auto;
-  margin-left: 0px;
-  background: #9e0800;
-  margin-bottom: 0px;
-  padding: 0px;
-}
-
-#homepage{
-  position: relative;
-  display: block;
-  margin: auto 560px;
-  z-index: 1;
-}
-
-#header{
-  position: relative;
-  width: auto;
-  height: 86px;
-  margin-top: -38px;
-  background-image: url("../header.png");
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .news-listing article {
     flex-flow: row nowrap;
 }
-
 .news-listing article figure {
   position: relative;
   display: inline-block;
@@ -112,8 +59,6 @@ iframe.map{
   height: 500px;
 }
 
-ul.topnav li.icon {display: none;}
-
 .menu:not(.ChatCorner) {display: none}
 
 .s4{
@@ -126,65 +71,11 @@ ul.topnav li.icon {display: none;}
     margin-top: 5em;
   }
   
-  #header{
-    display: none;
-  }
-  
-  a:hover.active {
-    background: #333;
-  }
-  img.active{
-    background: white;
-    width: 50px;
-  }
-  figure.wokntandoor{
-    display: none;
-  }
-  ul, li{
-    float: none;
-  }
   iframe.map{
     position: relative;
     width: 100%;
     height: 100%;
   }
-  
-  ul.topnav{
-    top: 0;
-    left: 0;
-    position: fixed;
-    z-index: 1;
-    width: 100%;
-    opacity: 0.95;
-  }
-  
-  ul.topnav li {display: none;}
-  ul.topnav li.icon {
-    float: left;
-    display: inline-block;
-  }
-  
-  ul.topnav.responsive {
-    z-index: 1;
-    width: 100%;
-  }
-  ul.topnav.responsive li.icon {
-    float: left;
-    position: fixed;
-    top: 5px;
-    left: 5px;
-  }
-  ul.topnav.responsive li {
-    float: none;
-    display: inline;
-    padding: 0;
-    margin: 0;
-  }
-  ul.topnav.responsive li a {
-    display: block;
-    text-align: center;
-  }
-  
-  
+ 
   
 }
