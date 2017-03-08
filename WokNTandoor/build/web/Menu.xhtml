@@ -29,29 +29,67 @@ and open the template in the editor.
         <title>Menu</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="shortcut icon" type="image/x-icon" href="icon.png" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css" />        
         <link rel="stylesheet" href="styles/styles.css"/>
-        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css" />
+        <link rel="stylesheet" href="styles/navCss.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <header>
         <ui:include src="nav.xhtml"/>
     </header>
     <body>
         
-    <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
-  <div class="w3-content">
-  
-    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">THE MENU</h1>
-    <div class="w3-row w3-center w3-border w3-border-dark-grey navMenu">
-      <a href="javascript:void(0)" onclick="openMenu(event, 'ChatCorner');" id="myLink">
-        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Chat Corner</div>
+    <div class="w3-black w3-xxlarge" id="menu">
+  <div>
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:32px; margin-top: 0px;">THE MENU</h1>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div class="w3-row w3-center w3-border w3-border-dark-grey navMenu carousel-inner">
+        
+      <a class ="a item active" href="javascript:void(0)" onclick="openMenu(event, 'ChatCorner');" id="myLink">
+        <div class="w3-col s4 tablink w3-padding-large w3-red">Chat Corner</div>
       </a>
-      <a href="javascript:void(0)" onclick="openMenu(event, 'KatiRoll');">
-        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Salads</div>
+      <a class ="a item" href="javascript:void(0)" onclick="openMenu(event, 'KatiRoll');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Kati Roll</div>
       </a>
-      <a href="javascript:void(0)" onclick="openMenu(event, 'TandoorOnFire');">
-        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Starter</div>
+      <a class ="a item" href="javascript:void(0)" onclick="openMenu(event, 'TandoorOnFire');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Tandoor on Fire</div>
+      </a>
+      <a class ="a item" href="javascript:void(0)" onclick="openMenu(event, 'MysticMasala');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Mystic Masala</div>
+      </a>
+      <a class ="a item" href="javascript:void(0)" onclick="openMenu(event, 'WokOnFire');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Wok on Fire</div>
+      </a>
+      <a class ="a item" href="javascript:void(0)" onclick="openMenu(event, 'Pizza');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Pizza</div>
+      </a>
+      <a class ="a item" href="javascript:void(0)" onclick="openMenu(event, 'Rice');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Rice</div>
+      </a>
+      <a class ="a item" href="javascript:void(0)" onclick="openMenu(event, 'Naan');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Naan</div>
+      </a>
+      <a class ="a item" href="javascript:void(0)" onclick="openMenu(event, 'Desserts');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Desserts</div>
+      </a>
+      <a class ="a item" href="javascript:void(0)" onclick="openMenu(event, 'Beverages');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Beverages</div>
       </a>
     </div>
+     <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+     </div>
+    
+    
 
     <div id="ChatCorner" class="w3-container menu w3-padding-32 w3-white ChatCorner">
       <h1><b>Bhel Puri</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$4.49</span></h1>
@@ -99,6 +137,8 @@ and open the template in the editor.
     </div>
 
     <div id="KatiRoll" class="w3-container menu w3-padding-32 w3-white">
+      <h1><b>Lasagna</b> <span class="w3-tag w3-grey w3-round">Popular</span> <span class="w3-right w3-tag w3-dark-grey w3-round">$13.50</span></h1>
+      <p class="w3-text-grey">Special sauce, mozzarella, parmesan, ground beef</p>
       <h1><b>Veg. Kati Roll</b> <span class="w3-tag w3-grey w3-round">Popular</span> <span class="w3-right w3-tag w3-dark-grey w3-round">$6.99</span></h1>
       <p class="w3-text-grey">Veggie patty, onions, and bell peppers wrapped in a roti served with a vinaigrette dipping sauce</p>
       <hr />
@@ -121,6 +161,8 @@ and open the template in the editor.
 
 
     <div id="TandoorOnFire" class="w3-container menu w3-padding-32 w3-white">
+      <h1><b>Today's Soup</b> <span class="w3-tag w3-grey w3-round">Seasonal</span><span class="w3-right w3-tag w3-dark-grey w3-round">$5.50</span></h1>
+      <p class="w3-text-grey">Ask the waiter</p>
       <h1><b>Tandoori Chicken</b> <span class="w3-tag w3-grey w3-round">Seasonal</span><span class="w3-right w3-tag w3-dark-grey w3-round">$10.99</span></h1>
       <p class="w3-text-grey">Marinated Chicken, skewered and cooked in the tandoor (dark meat with bone)</p>
       <hr />
