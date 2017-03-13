@@ -8,10 +8,8 @@ html, body{
 .tablink, navMenu{
   text-decoration: none;
   display: block;
-<<<<<<< HEAD
   background: #9e0800;
   margin-left: 33.333%;
-=======
   background: #9e0800;  
 }
 
@@ -38,7 +36,6 @@ li, a.nav, a.homepage{
 
 a:hover:not(.homepage):not(.overlay) {
   background-color: #111;
->>>>>>> origin/master
 }
 
 iframe{
