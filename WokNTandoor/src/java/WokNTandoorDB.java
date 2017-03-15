@@ -21,7 +21,7 @@ import javax.sql.DataSource;
  * @author Adonias
  */
 @ManagedBean
-//@Named(value = "wokNTandoorDB")
+@Named(value = "wokNTandoorDB")
 @SessionScoped
 public class WokNTandoorDB implements Serializable {
     @Resource(name="jdbc/wokntandoor")
