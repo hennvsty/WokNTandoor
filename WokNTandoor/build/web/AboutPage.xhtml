@@ -18,6 +18,35 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" href="styles/styles.css"/>
         <link rel="stylesheet" href="styles/navCss.css"/>
+        
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css"
+        rel="stylesheet" type="text/css">
+
+    <script type="text/javascript">
+      function initialize() {
+        var myOptions = {
+          zoom: 8,
+          center: new google.maps.LatLng(-34.397, 150.644),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById('map_canvas'),
+            myOptions);
+      }
+      function loadScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'http://maps.googleapis.com/maps/api/js?sensor=false&amp;' +
+            'callback=initialize';
+        document.body.appendChild(script);
+      }
+      window.onload = loadScript;
+    </script>
+        
+        
+        
+        
     </head>
     <header>
         <ui:include src="nav.xhtml"/>
@@ -26,6 +55,8 @@ and open the template in the editor.
     
     <body>
         <h1>Location</h1>
+        
+        <div id="map_canvas"></div>
     </body>
     <ui:include src="footer.xhtml"/>
 </html>
