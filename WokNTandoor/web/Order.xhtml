@@ -19,7 +19,40 @@ and open the template in the editor.
     <header>
         <ui:include src="nav.xhtml"/>
     </header>
+    
     <body>
+        <div class="w3-content w3-padding-32" style="max-width:1280px">
+            
+            <div class="w3-row-padding">
+                <div class="w3-col m2">
+                    <input class="w3-check" type="checkbox"/>
+                    <label>Kati Roll</label>
+                </div>
+                <div class="w3-col m2">
+                    <input class="w3-input w3-border" type="number" placeholder="0" min="0" max="10"/>
+                </div>
+            </div>
+            <hr/>
+            <div class="w3-row-padding">
+                <div class="w3-col m2">
+                    <input class="w3-check" type="checkbox"/>
+                    <label>Tandoor on Fire</label>
+                </div>
+                <div class="w3-col m1">
+                    <input class="w3-input w3-border" type="number" placeholder="0" min="0" max="10"/>
+                </div>
+            </div>
+            <hr/>
+            <div class="w3-row-padding">
+                <div class="w3-col m3">
+                    <input class="w3-check" type="checkbox"/>
+                    <label>Mystic Masala</label>
+                </div>
+                <div class="w3-col m1">
+                    <input class="w3-input w3-border" type="number" placeholder="0" min="0" max="10"/>
+                </div>
+            </div>
+        </div>
     </body>
     <ui:include src="footer.xhtml"/>
 </html>
