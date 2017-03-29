@@ -1,0 +1,212 @@
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Bhel Puri', '4.49', NULL, NULL, 'Puffed rice tossed in with onions, potatoes, garbanzo beans and tangy tamarind sauce', 'Chat Corner');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Sev Dahi Puri', '4.99', NULL, NULL, 'Round puff puris filled with potatoes, variety of chutneys, yogurt and garnished with fried noodles on top', 'Chat Corner');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Pani Puri', '4.49', NULL, NULL, 'Round puff puris served with potatoes, sweet chutney and flavored herbs spiced water', 'Chat Corner');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Mogo Pili Pili', '4.99', NULL, NULL, 'Fried cassava topped with various chutneys', 'Chat Corner');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Masala Fries', '4.99', NULL, NULL, 'French fries with onions and bell peppers garnished with several chutneys drizzled all over', 'Chat Corner');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Pau Bhaji', '5.99', NULL, NULL, 'Mixed veggies served with two soft bread rolls and diced onions', 'Chat Corner');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Samosa', '2.50', NULL, NULL, 'Tempered potatoes, peas in a crispy pastry', 'Chat Corner');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Veg. Pokada', '3.99', NULL, NULL, 'Deep fried mix vegetables mixed with spices and gram flour', 'Chat Corner');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Samosa Chat', '4.99', NULL, NULL, 'One samosa with garbanzo bean masala on top with sweet, spicy chutneys and yogurt.', 'Chat Corner');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Tiki Chat', '4.99', NULL, NULL, 'one veggie patty with garbanzo bean masala on top along with sweet, spicy chutneys and yogurt on top', 'Chat Corner');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chinese Bhel', '4.50', NULL, NULL, 'Thin fried noodles tossed in tangy and spicy sauce', 'Chat Corner');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Veg. Kati Roll', '6.99', NULL, NULL, 'Veggie patty, onions, and bell peppers wrapped in a roti served with a vinaigrette dipping sauce', 'Kati Roll');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Paneer Kati Roll', '7.99', NULL, NULL, 'Paneer, onions, and bell peppers wrapped in a roti served with a vinaigrette dipping sauce', 'Kati Roll');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Lamb Roll', '10.99', NULL, NULL, 'Minced lamb, onions, and bell peppers wrapped in a roti coated in egg, served with a vinaigrette dipping sauce', 'Kati Roll');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chicken Tikka Roll', '9.99', NULL, NULL, 'Chicken, onions, and bell peppers wrapped in a roti coated in egg, served with a vinaigrette dipping sauce', 'Kati Roll');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Veg. Naanza', '7.99', NULL, NULL, 'Naan Bread topped with mixed veggies and melted cheese', 'Kati Roll');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Tandoori Chicken', '10.99', NULL, NULL, 'Marinated Chicken, skewered and cooked in the tandoor (dark meat with bone)', 'Tandoor on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Murg Malai Kabab', '10.99', NULL, NULL, 'Chicken kabob with a rich cream sauce and gypsy onions on top', 'Tandoor on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chicken Tikka', '10.99', NULL, NULL, 'Chicken kabob marinated and cooked in the tandoor', 'Tandoor on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Jeera Chicken', '10.99', NULL, NULL, 'Marinated chicken with cumin seeds, ginger and garlic', 'Tandoor on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Dry Paneer Tikka', '9.49', NULL, NULL, 'Marinated cottage cheese tossed with onions and bell peppers', 'Tandoor on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Lasoni Sheesh Kabab', '11.99', NULL, NULL, 'Marinated minced lamb, skewered and cooked in the tandoor', 'Tandoor on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chicken Tikka Masala', '9.99', NULL, NULL, 'Chicken kabob in a rich tomato cream gravy', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Paneer Tikka Masala', '8.99', NULL, NULL, 'Soft indian cottage cheese (paneer) in a rich tomato cream gravy', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chicken Curry Punjabi', '9.99', NULL, NULL, 'Boneless chicken cooked with masala gravy', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Lamb Curry', '11.99', NULL, NULL, 'Tender chunks of lamb in a rich and smooth masala gravy', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Goat Curry', '12.99', NULL, NULL, 'Tender goat on the bone in a spicy masala gravy', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chole Bhatura', '7.99', NULL, NULL, 'Garbanzo beans in a onion gravy with 2 bhaturas (fried flatebread)', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Saag Paneer', '8.49', NULL, NULL, 'Creamed spinach and homemade paneer masala', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Malai Kofta', '8.99', NULL, NULL, 'Veggie kofta balls in a rich creamed tomato masala', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Rarha Chicken', '9.99', NULL, NULL, 'Tandoori chicken in a rich tomato gravy', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Daal Fry', '5.99', NULL, NULL, 'Mumbais yellow daal tadka with fresh herbs and spices', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Veg Korma', '9.99', NULL, NULL, 'Mixed veggies sauteed in cream, herbs and spices', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chicken Korma', '10.99', NULL, NULL, 'Chicken sauteed in cream, herbs and spices', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Lamb Korma', '11.99', NULL, NULL, 'Tender chunks of lamb sauteed in cream, herbs and spices', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Goat Korma', '12.99', NULL, NULL, 'Goat in a creamy sauce with dry fruits', 'Mystic Masala');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Gobi Manchurian', '8.99', NULL, NULL, 'Crispy cauliflower in a spicy ginger and garlic soy sauce', 'Wok on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Veg. Manchurian Dry', '8.99', NULL, NULL, 'Veggie dumplings tossed in a spicy ginger and garlic soy sauce', 'Wok on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Hot Garlic Eggplant', '8.99', NULL, NULL, 'Tender eggplant sauteed with dry chilis and garlic', 'Wok on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chilly Chicken', '10.99', NULL, NULL, 'Tangy chicken stir fried with chilis onions and bell peppers', 'Wok on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Szechuan Fries', '6.99', NULL, NULL, 'Potato fries stir fried with sezchuan sauce', 'Wok on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Manchurian Chicken', '10.99', NULL, NULL, 'Chicken stir fried in a spicy ginger and garlic soy sauce', 'Wok on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Fried Rice', '7.99', NULL, NULL, 'Fried rice with cabbage, onions and bell peppers', 'Wok on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Hakka Noodles', '8.99', NULL, NULL, 'Bombay style nodles tossed with onions, bell peppers and cabbage', 'Wok on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Szechuan Chicken Tikka', '10.99', NULL, NULL, 'Chicken tikka kabobs tossed in a szechuan sauce', 'Wok on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Paneer Manchurian', '10.99', NULL, NULL, 'Soft Indian cottage cheese (paneer) tossed in a spicy, ginger and garlic soy sauce', 'Wok on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chili Paneer', '10.99', NULL, NULL, 'Paneer stir fried with chilis onions and bell peppers', 'Wok on Fire');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chilly Focasia', '5.50', NULL, NULL, 'A flatbread topped with fresh chili, onions and cheese', 'Pizza');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chicken Tikka Pizza', '12.99', NULL, NULL, 'Chicken, onions, bell peppers and cheese over a tomato masala sauce', 'Pizza');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Paneer Tikka Pizza', '12.99', NULL, NULL, 'Paneer, onions, bell peppers and cheese over a tomato masala sauce', 'Pizza');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Veg. Tandoori Pizza', '12.99', NULL, NULL, NULL, 'Pizza');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Cheese Pizza', '9.99', NULL, NULL, NULL, 'Pizza');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Veggie Biryani', '9.00', NULL, NULL, 'Rice Flavored with exotic spices with mixed veggies', 'Rice');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chicken Biryani', '10.99', NULL, NULL, 'Rice flavored with exotic spices with chunks of chicken', 'Rice');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Lamb Biryani', '11.99', NULL, NULL, 'Flavored rice with exotic spices with chunks of tender lamb', 'Rice');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Jeera Rice', '3.00', NULL, NULL, 'Indian rice with cumin seeds', 'Rice');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Steamed Rice', '3.00', NULL, NULL, 'Plain rice', 'Rice');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Butter Naan', '1.75', NULL, NULL, NULL, 'Naan');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Garlic Naan', '2.25', NULL, NULL, NULL, 'Naan');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chilly Cheese Naan', '2.99', NULL, NULL, NULL, 'Naan');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Bhatura', '1.49', NULL, NULL, NULL, 'Naan');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Lacha Paratha', '2.25', NULL, NULL, NULL, 'Naan');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Tandoori Roti', '1.50', NULL, NULL, NULL, 'Naan');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Chilly Garlic Naan', '1.50', NULL, NULL, NULL, 'Naan');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Pan Kulfi', '2.99', NULL, NULL, NULL, 'Desserts');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Pista Kulfi', '2.99', NULL, NULL, NULL, 'Desserts');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Mava Kulfi', '2.99', NULL, NULL, NULL, 'Desserts');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Mango Kulfi', '2.99', NULL, NULL, NULL, 'Desserts');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Mango Lassi', '2.75', NULL, NULL, 'Yogurt smoothie with mango and cream', 'Beverages');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Cutting Tea', '1.99', NULL, NULL, 'Mumbais special masala chai tea', 'Beverages');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Fountain Soda', '1.50', NULL, NULL, 'Coke, Diet Coke, Sprite', 'Beverages');
