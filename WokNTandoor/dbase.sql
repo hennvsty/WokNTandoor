@@ -3,7 +3,8 @@ CREATE TABLE Dishes (
     DishPrice DECIMAL(4, 2),
     DishSpecialPrice DECIMAL(4, 2),
     DishDescription VARCHAR(400),
-    DishPicture VARCHAR(400)
+    DishPicture VARCHAR(400),
+	SubMenu VARCHAR(40)
 );
 
 CREATE TABLE Sides (
@@ -26,8 +27,7 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Orders (
-    --Derby uses a different way to declare auto-increment fields
-    OrderID INT NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 0, INCREMENT BY 1),
+    OrderID INT NOT NULL AUTO_INCREMENT,
     UserName VARCHAR(30),
     OrderPlacedTime TIMESTAMP,
     OrderTotalPrice DECIMAL(4, 2),
