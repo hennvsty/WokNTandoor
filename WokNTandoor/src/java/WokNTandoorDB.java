@@ -20,11 +20,10 @@ import javax.sql.DataSource;
  *
  * @author Adonias
  */
-@ManagedBean
-@Named(value = "wokNTandoorDB")
+@ManagedBean(name = "wokNTandoorDB")
 @SessionScoped
 public class WokNTandoorDB implements Serializable {
-    @Resource(name="jdbc/wokntandoor")
+    @Resource(name="jdbc/wokntandoordb")
     private DataSource source;
     private String dishName;
     private String dishPrice;
@@ -41,14 +40,16 @@ public class WokNTandoorDB implements Serializable {
     }
     
     public String getMenuItems(String subMenu) throws SQLException{
-        //Connection conn = source.getConnection();
-        //String schema = conn.getSchema();
-        if (source == null) 
-      {
-         Logger.global.info("No database connection");
-         //return null;
+      if (source == null) {
+        Logger.global.info("No database connection");
+        return "no data source connection";
       }
-      try(Connection conn = source.getConnection()){
+      Connection conn = source.getConnection();
+      if(conn == null){
+          return "no database connection";
+      }
+      String schema = conn.getSchema();
+      try{
          String catalog = conn.getCatalog();
          
          System.out.println(conn);
@@ -60,9 +61,10 @@ public class WokNTandoorDB implements Serializable {
              return result.getString(1); 
          }
          else { 
-             return null; 
+             return "nothing"; 
          }
-      } 
+      }
+      catch(Exception e){return e.getMessage();}
     }
     
 }
