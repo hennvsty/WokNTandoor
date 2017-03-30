@@ -13,46 +13,106 @@ and open the template in the editor.
         <title>WnT - Order</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="shortcut icon" type="image/x-icon" href="icon.png" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
         <link rel="stylesheet" href="styles/styles.css"/>
         <link rel="stylesheet" href="styles/navCss.css"/>
+        <style>
+            .menu-category { padding: 8px 14px; color: white; background-color: #b70e0e; }
+            .menu-item-thumb { width: 100px; padding-right: 15px; }
+            .menu-item-info { width: 520px; padding-left: 15px; color: white; }
+            .menu-item-price { padding-left: 10px; padding-right: 36px; color: white; font-size: 18px; white-space: nowrap; }
+            .menu-item-qty { height: 10px; }
+            .popup-title { padding: 0 20px; color:white; background-color: #c02704; }
+        </style>
     </head>
     <header>
         <ui:include src="nav.xhtml"/>
     </header>
     
+    <script>
+        function openTab(evt, foodMenu) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("food-menu");
+            for (i = 0; i !== x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i !== x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+            }
+            document.getElementById(foodMenu).style.display = "block";
+            evt.currentTarget.className += " w3-red";
+        }
+    </script>
+    
     <body>
-        <div class="w3-content w3-padding-32" style="max-width:1280px">
+        <div class="w3-content w3-padding-32" style="max-width:800px">
+            <button class="w3-button w3-transparent w3-text-white tablinks w3-red" onclick="openTab(event, 'Full Menu')">Full Menu</button>
+            <button class="w3-button w3-transparent w3-text-white tablinks" onclick="openTab(event, 'Lunch Menu')">Lunch Menu</button>
             
-            <div class="w3-row-padding">
-                <div class="w3-col m2">
-                    <input class="w3-check" type="checkbox"/>
-                    <label>Kati Roll</label>
-                </div>
-                <div class="w3-col m2">
-                    <input class="w3-input w3-border" type="number" placeholder="0" min="0" max="10"/>
-                </div>
+            <div id="Full Menu" class="w3-padding-32 food-menu">
+                <h5 class="menu-category">What's Good</h5>
+                
+                <table class="w3-bordered w3-content">
+                    <tr>
+                        <td class="menu-item-thumb"></td>
+                        <td class="menu-item-info">
+                            <div class="w3-large w3-padding-4">Chicken Tikka Masala</div>
+                            <div class="w3-small w3-padding-4">Chicken kabob in a rich tomato cream gravy</div>
+                        </td>
+                        <td class="menu-item-price">$9.99</td>
+                        <td class="w3-large w3-center">
+                            <button class="w3-button w3-transparent w3-text-khaki">+</button>
+                            <div class="w3-text-white">0</div>
+                            <button class="w3-button w3-transparent w3-text-khaki">-</button>
+                        </td>
+                    </tr>
+                </table>
+                
+                <h5 class="menu-category">Chat Corner</h5>
+                
+                <h5 class="menu-category">Kati Roll</h5>
+                
+                <h5 class="menu-category">Tandoor on Fire</h5>
+                
+                <h5 class="menu-category">Mystic Masala (does not come with rice or naan)</h5>
+                
+                <h5 class="menu-category">Wok on Fire (does not come with rice or naan)</h5>
+                
+                <h5 class="menu-category">Pizza</h5>
+                
+                <h5 class="menu-category">Rice</h5>
+                
+                <h5 class="menu-category">Naan (don't forget to add the rice and naan to your order!)</h5>
+                
+                <h5 class="menu-category">Dessert</h5>
+                
+                <h5 class="menu-category">Beverages</h5>
             </div>
-            <hr/>
-            <div class="w3-row-padding">
-                <div class="w3-col m2">
-                    <input class="w3-check" type="checkbox"/>
-                    <label>Tandoor on Fire</label>
-                </div>
-                <div class="w3-col m1">
-                    <input class="w3-input w3-border" type="number" placeholder="0" min="0" max="10"/>
-                </div>
+            
+            <div id="Lunch Menu" class="w3-padding-32 food-menu" style="display:none">
+                <h5 class="menu-category">Mystic Bowl</h5>
+                <h5 class="menu-category">Wok Bowl</h5>
+                <h5 class="menu-category">Lunch Pizza</h5>
             </div>
-            <hr/>
-            <div class="w3-row-padding">
-                <div class="w3-col m3">
-                    <input class="w3-check" type="checkbox"/>
-                    <label>Mystic Masala</label>
-                </div>
-                <div class="w3-col m1">
-                    <input class="w3-input w3-border" type="number" placeholder="0" min="0" max="10"/>
+        </div>
+
+        <!--
+        <div id="popup" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-animate-opacity">
+                <header class="popup-title w3-container">
+                    <span class="w3-button w3-transparent w3-display-topright"
+                          onclick="document.getElementById('popup').style.display='none'">&#215;</span>
+                    <h5>Chicken Tikka Masala</h5>
+                </header>
+                <div class="w3-container">
+                    <p>Some text..</p>
+                    <p>Some text..</p>
                 </div>
             </div>
         </div>
+        -->
+
     </body>
     <ui:include src="footer.xhtml"/>
 </html>
