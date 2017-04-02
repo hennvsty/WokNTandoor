@@ -88,105 +88,37 @@ and open the template in the editor.
         <span class="sr-only">Next</span>
     </a>
      </div>
-    
-    
-
     <div id="ChatCorner" class="w3-container menu w3-padding-32 w3-white ChatCorner">
-        #{wokNTandoorDB.getMenuItems("Chat Corner")}
-      <h1><b>Bhel Puri</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$4.49</span></h1>
-      <p class="w3-text-grey">Puffed rice tossed in with onions, potatoes, garbanzo beans and tangy tamarind sauce</p>
-      <hr />
-   
-      <h1><b>Sev Dahi Puri</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$4.99</span></h1>
-      <p class="w3-text-grey">Round puff puris filled with potatoes, variety of chutneys, yogurt and garnished with fried noodles on top</p>
-      <hr />
-      
-      <h1><b>Pani Puri</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$4.49</span></h1>
-      <p class="w3-text-grey">Round puff puris served with potatoes, sweet chutney and flavored herbs spiced water</p>
-      <hr />
-
-      <h1><b>Mogo Pili Pili</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$4.99</span></h1>
-      <p class="w3-text-grey">Fried cassava topped with various chutneys</p>
-      <hr />
-
-      <h1><b>Masala Fries</b> <span class="w3-tag w3-red w3-round">Hot!</span><span class="w3-right w3-tag w3-dark-grey w3-round">$4.99</span></h1>
-      <p class="w3-text-grey">French fries with onions and bell peppers garnished with several chutneys drizzled all over</p>
-      <hr />
-
-      <h1><b>Pau Bhaji</b> <span class="w3-tag w3-grey w3-round">New</span><span class="w3-right w3-tag w3-dark-grey w3-round">$5.99</span></h1>
-      <p class="w3-text-grey">Mixed veggies served with two soft bread rolls and diced onions</p>
-      <hr />
-      
-      <h1><b>Samosa</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$2.50</span></h1>
-      <p class="w3-text-grey">Tempered potatoes, peas, in a crispy pastry</p>
-      <hr />
-      
-      <h1><b>Veg. Pokada</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$3.99</span></h1>
-      <p class="w3-text-grey">Deep fried mix vegetables mixed with spices and gram flour</p>
-      <hr />
-      
-      <h1><b>Samosa Chat</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$4.99</span></h1>
-      <p class="w3-text-grey">One samosa with garbanzo bean marsala on top with sweet, spicy chutneys and yogurt</p>
-      <hr />
-      
-      <h1><b>Tiki Chat</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$4.99</span></h1>
-      <p class="w3-text-grey">One veggie patty with garbanzo bean marsala on top along with sweet, spicy chutneys and yogurt on top</p>
-      <hr />
-      
-      <h1><b>Chinese Bhel</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$4.50</span></h1>
-      <p class="w3-text-grey">Thin fried noodles tossed in tangy and spicy sauce</p>
+        <h:outputText value = "#{wokNTandoorDB.getMenuItems('Chat Corner')}" escape = "false"/>
     </div>
-
     <div id="KatiRoll" class="w3-container menu w3-padding-32 w3-white">
-      <h1><b>Lasagna</b> <span class="w3-tag w3-grey w3-round">Popular</span> <span class="w3-right w3-tag w3-dark-grey w3-round">$13.50</span></h1>
-      <p class="w3-text-grey">Special sauce, mozzarella, parmesan, ground beef</p>
-      <h1><b>Veg. Kati Roll</b> <span class="w3-tag w3-grey w3-round">Popular</span> <span class="w3-right w3-tag w3-dark-grey w3-round">$6.99</span></h1>
-      <p class="w3-text-grey">Veggie patty, onions, and bell peppers wrapped in a roti served with a vinaigrette dipping sauce</p>
-      <hr />
-   
-      <h1><b>Paneer Kati Roll</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$7.99</span></h1>
-      <p class="w3-text-grey">Paneer, onions, and bell peppers wrapped in a roti served with a vinaigrette dipping sauce</p>
-      <hr />
-      
-      <h1><b>Lamb Roll</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$10.99</span></h1>
-      <p class="w3-text-grey">Minced lamb, onions, and bell peppers wrapped in a roti coated in egg, served with a vinaigrette dipping sauce</p>
-      <hr />
-
-      <h1><b>Chicken Tikka Roll</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$9.99</span></h1>
-      <p class="w3-text-grey">Chicken, onions, and bell peppers wrapped in a roti coated in egg, served with a vinaigrette dipping sauce</p>
-      <hr />
-      
-      <h1><b>Veg. Naanza</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$7.99</span></h1>
-      <p class="w3-text-grey">Naan bread topped with mixed veggies and melted cheese</p>
+        <h:outputText value = "#{wokNTandoorDB.getMenuItems('Kati Roll')}" escape = "false"/>
     </div>
-
-
     <div id="TandoorOnFire" class="w3-container menu w3-padding-32 w3-white">
-      <h1><b>Today's Soup</b> <span class="w3-tag w3-grey w3-round">Seasonal</span><span class="w3-right w3-tag w3-dark-grey w3-round">$5.50</span></h1>
-      <p class="w3-text-grey">Ask the waiter</p>
-      <h1><b>Tandoori Chicken</b> <span class="w3-tag w3-grey w3-round">Seasonal</span><span class="w3-right w3-tag w3-dark-grey w3-round">$10.99</span></h1>
-      <p class="w3-text-grey">Marinated Chicken, skewered and cooked in the tandoor (dark meat with bone)</p>
-      <hr />
-   
-      <h1><b>Murg Malai Kabab</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$10.99</span></h1>
-      <p class="w3-text-grey">Chicken kabob with a rich cream sauce and gypsy onions on top</p>
-      <hr />
-      
-      <h1><b>Chicken Tikka</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$10.99</span></h1>
-      <p class="w3-text-grey">Chicken kabob marinated and cooked in the tandoor</p>
-      <hr />
-      
-      <h1><b>Jeera Chicken</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$10.99</span></h1>
-      <p class="w3-text-grey">Marinated chicken with cumin seeds, ginger garlic</p>
-      <hr />
-      
-      <h1><b>Dry Paneer Tikka</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$9.49</span></h1>
-      <p class="w3-text-grey">Marinated cottage cheese tossed with onions and bell peppers</p>
-      <hr />
-      
-      <h1><b>Lasoni Shish Kabab</b> <span class="w3-right w3-tag w3-dark-grey w3-round">$11.99</span></h1>
-      <p class="w3-text-grey">Marinated minced lamb, skewered and cooked in the tandoor</p>
-    </div><br />
+        <h:outputText value = "#{wokNTandoorDB.getMenuItems('Tandoor On Fire')}" escape = "false"/>
+    </div>
+    <div id="MysticMasala" class="w3-container menu w3-padding-32 w3-white">
+        <h:outputText value = "#{wokNTandoorDB.getMenuItems('Mystic Masala')}" escape = "false"/>
+    </div>
+    <div id="WokOnFire" class="w3-container menu w3-padding-32 w3-white">
+        <h:outputText value = "#{wokNTandoorDB.getMenuItems('Wok On Fire')}" escape = "false"/>
+    </div>
+    <div id="Pizza" class="w3-container menu w3-padding-32 w3-white">
+        <h:outputText value = "#{wokNTandoorDB.getMenuItems('Pizza')}" escape = "false"/>
+    </div>
+    <div id="Rice" class="w3-container menu w3-padding-32 w3-white">
+        <h:outputText value = "#{wokNTandoorDB.getMenuItems('Rice')}" escape = "false"/>
+    </div>
+    <div id="Naan" class="w3-container menu w3-padding-32 w3-white">
+        <h:outputText value = "#{wokNTandoorDB.getMenuItems('Naan')}" escape = "false"/>
+    </div>
+    <div id="Desserts" class="w3-container menu w3-padding-32 w3-white">
+        <h:outputText value = "#{wokNTandoorDB.getMenuItems('Desserts')}" escape = "false"/>
+    </div>
+    <div id="Beverages" class="w3-container menu w3-padding-32 w3-white">
+        <h:outputText value = "#{wokNTandoorDB.getMenuItems('Beverages')}" escape = "false"/>
+    </div>
+    <br />
 
   </div>
 </div>

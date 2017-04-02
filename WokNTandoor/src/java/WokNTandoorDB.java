@@ -48,21 +48,29 @@ public class WokNTandoorDB implements Serializable {
       if(conn == null){
           return "no database connection";
       }
-      String schema = conn.getSchema();
+      String name, description;
+      double price;
       try{
          String catalog = conn.getCatalog();
-         
-         System.out.println(conn);
          PreparedStatement stat = conn.prepareStatement(
-            "SELECT * FROM Dishes WHERE SubMenu = ?");
+            "SELECT DishName, DishPrice, DishDescription FROM Dishes WHERE SubMenu = ?");
          stat.setString(1, subMenu);
          ResultSet result = stat.executeQuery();
-         if (result.next()) { 
-             return result.getString(1); 
+         String allItemswHTML = "";
+         while (result.next()) {
+             name = result.getString("DishName");
+             price = result.getDouble("DishPrice");
+             description = result.getString("DishDescription");
+             allItemswHTML += "<h1><b>" + name + "</b><span class=\"w3-right w3-tag w3-dark-grey w3-round\">$" + 
+                     String.format("%.2f", price) + "</span></h1>";
+             
+             if(description!= null)
+                 allItemswHTML += "<p class=\"w3-text-grey\">" + description + "</p><hr />";
+             else
+                 allItemswHTML += "<hr />";
          }
-         else { 
-             return "nothing"; 
-         }
+         conn.close();
+         return allItemswHTML;
       }
       catch(Exception e){return e.getMessage();}
     }
