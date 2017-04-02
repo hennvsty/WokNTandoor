@@ -33,7 +33,9 @@ li, a.nav, a.homepage{
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   text-decoration: none;
 }
-
+.menu-category:hover{
+  background-color: #333;
+}
 a:hover:not(.homepage):not(.overlay) {
   background-color: #111;
 }
