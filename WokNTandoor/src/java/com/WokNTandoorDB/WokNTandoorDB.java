@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.WokNTandoorDB;
 
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.sql.Connection;
@@ -20,7 +20,7 @@ import javax.sql.DataSource;
  *
  * @author Adonias
  */
-@ManagedBean(name = "wokNTandoorDB")
+@ManagedBean(name = "wokNTandoorDB", eager = true)
 @SessionScoped
 public class WokNTandoorDB implements Serializable {
     @Resource(name="jdbc/wokntandoordb")
