@@ -37,7 +37,7 @@ and open the template in the editor.
             <span class="w3-right w3-large w3-text-white">Subtotal: $<span id="subtotal">0</span></span>
             
             <div id="Full Menu" class="w3-padding-32 food-menu">
-                <h5 class="menu-category">What's Good</h5>
+                <h5 class="menu-category" onclick="toggle('7001')">What's Good</h5>
                 
                 <table class="w3-bordered w3-content" id="7001">
                     <tr>
@@ -55,25 +55,54 @@ and open the template in the editor.
                     </tr>
                 </table>
                 
-                <h5 class="menu-category">Chat Corner</h5>
+                <h5 class="menu-category" onclick="toggle('chat')">Chat Corner</h5>
+                    <table class="w3-bordered w3-content" id="chat" style="display:none">
+                        <h:outputText value = "#{wokNTandoorDB.getOrderItems('Chat Corner')}" escape = "false"/>
+                    </table>
+                <h5 class="menu-category" onclick="toggle('kati')" >Kati Roll</h5>
+                    <table class="w3-bordered w3-content" id="kati" style="display:none">
+                        <h:outputText value = "#{wokNTandoorDB.getOrderItems('Kati Roll')}" escape = "false"/>
+                    </table>
                 
-                <h5 class="menu-category">Kati Roll</h5>
+                <h5 class="menu-category" onclick="toggle('tanonfire')">Tandoor on Fire</h5>
+                    <table class="w3-bordered w3-content" id="tanonfire" style="display:none">
+                        <h:outputText value = "#{wokNTandoorDB.getOrderItems('Tandoor on Fire')}" escape = "false"/>
+                    </table>
                 
-                <h5 class="menu-category">Tandoor on Fire</h5>
+                <h5 class="menu-category" onclick="toggle('mystic')">Mystic Masala (does not come with rice or naan)</h5>
+                    <table class="w3-bordered w3-content" id="mystic" style="display:none">
+                        <h:outputText value = "#{wokNTandoorDB.getOrderItems('Mystic Masala')}" escape = "false"/>
+                    </table>
                 
-                <h5 class="menu-category">Mystic Masala (does not come with rice or naan)</h5>
+                <h5 class="menu-category" onclick="toggle('wokonfire')">Wok on Fire (does not come with rice or naan)</h5>
+                    <table class="w3-bordered w3-content" id="wokonfire" style="display:none">
+                        <h:outputText value = "#{wokNTandoorDB.getOrderItems('Wok on Fire')}" escape = "false"/>
+                    </table>
                 
-                <h5 class="menu-category">Wok on Fire (does not come with rice or naan)</h5>
+                <h5 class="menu-category" onclick="toggle('pizza')">Pizza</h5>
+                    <table class="w3-bordered w3-content" id="pizza" style="display:none">
+                        <h:outputText value = "#{wokNTandoorDB.getOrderItems('Pizza')}" escape = "false"/>
+                    </table>
                 
-                <h5 class="menu-category">Pizza</h5>
+                <h5 class="menu-category" onclick="toggle('rice')">Rice</h5>
+                    <table class="w3-bordered w3-content" id="rice" style="display:none">
+                        <h:outputText value = "#{wokNTandoorDB.getOrderItems('Rice')}" escape = "false"/>
+                    </table>
                 
-                <h5 class="menu-category">Rice</h5>
+                <h5 class="menu-category" onclick="toggle('naan')">Naan (don't forget to add the rice and naan to your order!)</h5>
+                    <table class="w3-bordered w3-content" id="naan" style="display:none">
+                        <h:outputText value = "#{wokNTandoorDB.getOrderItems('Naan')}" escape = "false"/>
+                    </table>
                 
-                <h5 class="menu-category">Naan (don't forget to add the rice and naan to your order!)</h5>
+                <h5 class="menu-category" onclick="toggle('desserts')">Dessert</h5>
+                    <table class="w3-bordered w3-content" id="desserts" style="display:none">
+                        <h:outputText value = "#{wokNTandoorDB.getOrderItems('Desserts')}" escape = "false"/>
+                    </table>
                 
-                <h5 class="menu-category">Dessert</h5>
-                
-                <h5 class="menu-category">Beverages</h5>
+                <h5 class="menu-category" onclick="toggle('beverages')">Beverages</h5>
+                    <table class="w3-bordered w3-content" id="beverages" style="display:none">
+                        <h:outputText value = "#{wokNTandoorDB.getOrderItems('Beverages')}" escape = "false"/>
+                    </table>
             </div>
             
             <div id="Lunch Menu" class="w3-padding-32 food-menu" style="display:none">

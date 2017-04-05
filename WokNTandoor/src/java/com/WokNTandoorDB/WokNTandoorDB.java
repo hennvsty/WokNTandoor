@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.WokNTandoorDB;
 
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.sql.Connection;
@@ -20,7 +20,7 @@ import javax.sql.DataSource;
  *
  * @author Adonias
  */
-@ManagedBean(name = "wokNTandoorDB")
+@ManagedBean(name = "wokNTandoorDB", eager = true)
 @SessionScoped
 public class WokNTandoorDB implements Serializable {
     @Resource(name="jdbc/wokntandoordb")
@@ -31,12 +31,13 @@ public class WokNTandoorDB implements Serializable {
     private String dishDescription;
     private String subMenu;
     private String dishPicture;
+    private int orderID;
     
     /**
      * Creates a new instance of WokNTandoorDB
      */
     public WokNTandoorDB() {
-        
+        orderID = 0;
     }
     
     public String getMenuItems(String subMenu) throws SQLException{
@@ -68,6 +69,50 @@ public class WokNTandoorDB implements Serializable {
                  allItemswHTML += "<p class=\"w3-text-grey\">" + description + "</p><hr />";
              else
                  allItemswHTML += "<hr />";
+         }
+         conn.close();
+         return allItemswHTML;
+      }
+      catch(Exception e){return e.getMessage();}
+    }
+    
+    public String getOrderItems(String subMenu) throws SQLException{
+      if (source == null) {
+        Logger.global.info("No database connection");
+        return "no data source connection";
+      }
+      Connection conn = source.getConnection();
+      if(conn == null){
+          return "no database connection";
+      }
+      String name, description;
+      double price;
+      try{
+         String catalog = conn.getCatalog();
+         PreparedStatement stat = conn.prepareStatement(
+            "SELECT DishName, DishPrice, DishDescription FROM Dishes WHERE SubMenu = ?");
+         stat.setString(1, subMenu);
+         ResultSet result = stat.executeQuery();
+         String allItemswHTML = "";
+         while (result.next()) {
+             name = result.getString("DishName");
+             price = result.getDouble("DishPrice");
+             description = result.getString("DishDescription");
+             allItemswHTML += "<tr>" +
+"                        <td class=\"menu-item-thumb\"></td>" +
+"                        <td class=\"menu-item-info\">" +
+"                            <div class=\"w3-large w3-padding-4\">" + name + "</div>"; 
+             if(description!= null)
+                 allItemswHTML += "<div class=\"w3-small w3-padding-4\">" + description + "</div>";
+             else
+                 allItemswHTML += "</td>";
+             allItemswHTML += "<td class=\"menu-item-price\">$<span id=\"p"+ orderID + "\">" + String.format("%.2f", price) + "</span></td>";
+             allItemswHTML += "<td class=\"w3-large w3-center\">" +
+"                            <button class=\"w3-button w3-transparent w3-text-khaki\" onclick=\"addSubtotal("+orderID+")\">+</button>" +
+"                            <div id=\"q"+orderID+"\" class=\"w3-text-white\">0</div>" +
+"                            <button class=\"w3-button w3-transparent w3-text-khaki\" onclick=\"subtractSubtotal("+orderID+")\">-</button>" +
+"                        </td></tr>";  
+             orderID++;
          }
          conn.close();
          return allItemswHTML;

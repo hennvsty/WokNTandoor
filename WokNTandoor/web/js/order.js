@@ -22,27 +22,32 @@ function addSubtotal(item_id) {
     var subtotal, price_in, quantity, quantity_in;
 
     // Prevents decimal diarrhea
-    price_in = parseFloat(document.getElementById("p" + item_id).innerHTML) * 100;
+    price_in = parseFloat(document.getElementById("p" + item_id).innerHTML);
     quantity = document.getElementById("q" + item_id);
     quantity_in = parseInt(quantity.innerHTML);
-
-    if (quantity_in < 3) {
-        subtotal = document.getElementById("subtotal");
-        subtotal.innerHTML = (parseFloat(subtotal.innerHTML, 10) * 100 + price_in) / 100;
-        quantity.innerHTML = quantity_in + 1;
-    }
+    subtotal = document.getElementById("subtotal");
+    subtotal.innerHTML = (parseFloat(subtotal.innerHTML) + price_in).toFixed(2);
+    quantity.innerHTML = quantity_in + 1;
 }
 
 function subtractSubtotal(item_id) {
     var subtotal, price_in, quantity, quantity_in;
 
-    price_in = parseFloat(document.getElementById("p" + item_id).innerHTML) * 100;
+    price_in = parseFloat(document.getElementById("p" + item_id).innerHTML);
     quantity = document.getElementById("q" + item_id);
     quantity_in = parseInt(quantity.innerHTML);
-
     if (quantity_in > 0) {
         subtotal = document.getElementById("subtotal");
-        subtotal.innerHTML = (parseFloat(subtotal.innerHTML, 10) * 100 - price_in) / 100;
+        subtotal.innerHTML = (parseFloat(subtotal.innerHTML) - price_in).toFixed(2);
         quantity.innerHTML = quantity_in - 1;
+    }
+}
+
+function toggle(table_id){
+    var x = document.getElementById(table_id);
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
     }
 }
