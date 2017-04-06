@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.annotation.sql.DataSourceDefinition;
 import javax.faces.bean.ManagedBean;
 import javax.sql.DataSource;
 
@@ -21,9 +22,15 @@ import javax.sql.DataSource;
  * @author Adonias
  */
 @ManagedBean(name = "wokNTandoorDB", eager = true)
+@DataSourceDefinition(
+    name="java:global/WokNTandoor/wokntandoordb",
+    className="com.mysql.jdbc.Driver",
+    url="jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/ebdb?zeroDateTimeBehavior=convertToNull",
+    user="wokntandoor",
+    password="kickme531")
 @SessionScoped
 public class WokNTandoorDB implements Serializable {
-    @Resource(name="jdbc/wokntandoordb")
+    @Resource(lookup="java:global/WokNTandoor/wokntandoordb")
     private DataSource source;
     private String dishName;
     private String dishPrice;
