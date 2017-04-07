@@ -209,4 +209,52 @@ INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, Dish
 VALUES('Cutting Tea', '1.99', NULL, NULL, 'Mumbais special masala chai tea', 'Beverages');
 
 INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+<<<<<<< HEAD
 VALUES('Fountain Soda', '1.50', NULL, NULL, 'Coke, Diet Coke, Sprite', 'Beverages');
+=======
+VALUES('Fountain Soda', '1.50', NULL, NULL, 'Coke, Diet Coke, Sprite', 'Beverages');
+
+
+---newly added toppings--
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Mystic Bowl', '8.95', NULL, 'Served with rice or butter/garlic naan', NULL, 'Lunch Special');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Wok Bowl', '8.95', NULL, 'Served with steamed rice or noodles', NULL, 'Lunch Special');
+
+INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
+VALUES('Lunch Pizza', '8.95', NULL, 'Chicken Tikka, Paneer Tikka, Veggie', NULL, 'Lunch Special');
+
+
+
+-----Toppings----
+INSERT INTO Toppings (ToppingName)
+VALUES('Chicken Tikka');
+
+INSERT INTO Toppings (ToppingName)
+VALUES('Chicken Tikka Masala');
+
+INSERT INTO Toppings (ToppingName)
+VALUES('Paneer Tikka Masala');
+
+INSERT INTO Toppings (ToppingName)
+VALUES('Chana Masala');
+
+INSERT INTO Toppings (ToppingName)
+VALUES('Saag Paneer');
+
+
+INSERT INTO Toppings (ToppingName)
+VALUES('Chicken Manchurian');
+
+INSERT INTO Toppings (ToppingName)
+VALUES('Chilly Chicken');
+
+INSERT INTO Toppings (ToppingName)
+VALUES('Chilly Paneer');
+
+INSERT INTO Toppings (ToppingName)
+VALUES('Hot Garlic Eggplant');
+
+>>>>>>> origin/master
