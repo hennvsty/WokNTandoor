@@ -209,9 +209,7 @@ INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, Dish
 VALUES('Cutting Tea', '1.99', NULL, NULL, 'Mumbais special masala chai tea', 'Beverages');
 
 INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu)
-<<<<<<< HEAD
 VALUES('Fountain Soda', '1.50', NULL, NULL, 'Coke, Diet Coke, Sprite', 'Beverages');
-=======
 VALUES('Fountain Soda', '1.50', NULL, NULL, 'Coke, Diet Coke, Sprite', 'Beverages');
 
 
@@ -256,5 +254,3 @@ VALUES('Chilly Paneer');
 
 INSERT INTO Toppings (ToppingName)
 VALUES('Hot Garlic Eggplant');
-
->>>>>>> origin/master
