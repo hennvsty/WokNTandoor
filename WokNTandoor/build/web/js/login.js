@@ -12,13 +12,16 @@
 }).call(this);
 
 function pasuser(form) {
-if (form.id.value=="NatashaB") { 
-if (form.pass.value=="brahmbhatt") {              
-location="homepage.xhtml" 
-} else {
-alert("Invalid Password")
-}
-} else {  alert("Invalid UserID")
-}
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    if (username === "NatashaB") { 
+    if (password === "brahmbhatt") {              
+        location="homepage.xhtml" 
+    } else {
+        alert("Invalid Password")
+    }
+    } else {  
+        alert("Invalid UserID")
+    }
 }
 //-->
