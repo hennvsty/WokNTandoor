@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
-import javax.annotation.sql.DataSourceDefinition;
 import javax.faces.bean.ManagedBean;
 import javax.sql.DataSource;
 
@@ -22,15 +21,9 @@ import javax.sql.DataSource;
  * @author Adonias
  */
 @ManagedBean(name = "wokNTandoorDB", eager = true)
-@DataSourceDefinition(
-    name="java:global/WokNTandoor/wokntandoordb",
-    className="com.mysql.jdbc.Driver",
-    url="jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/ebdb?zeroDateTimeBehavior=convertToNull",
-    user="wokntandoor",
-    password="kickme531")
 @SessionScoped
 public class WokNTandoorDB implements Serializable {
-    @Resource(lookup="java:global/WokNTandoor/wokntandoordb")
+    @Resource(name="jdbc/wokntandoordb")
     private DataSource source;
     private String dishName;
     private String dishPrice;
@@ -39,11 +32,13 @@ public class WokNTandoorDB implements Serializable {
     private String subMenu;
     private String dishPicture;
     private int orderID;
+    private double subtotal;
     
     /**
      * Creates a new instance of WokNTandoorDB
      */
     public WokNTandoorDB() {
+        subtotal = 0;
         orderID = 0;
     }
     
@@ -59,7 +54,6 @@ public class WokNTandoorDB implements Serializable {
       String name, description;
       double price;
       try{
-         String catalog = conn.getCatalog();
          PreparedStatement stat = conn.prepareStatement(
             "SELECT DishName, DishPrice, DishDescription FROM Dishes WHERE SubMenu = ?");
          stat.setString(1, subMenu);
@@ -83,7 +77,7 @@ public class WokNTandoorDB implements Serializable {
       catch(Exception e){return e.getMessage();}
     }
     
-    public String getOrderItems(String subMenu) throws SQLException{
+    public String getOrderItems(String subMenu, String catID) throws SQLException{
       if (source == null) {
         Logger.global.info("No database connection");
         return "no data source connection";
@@ -95,7 +89,6 @@ public class WokNTandoorDB implements Serializable {
       String name, description;
       double price;
       try{
-         String catalog = conn.getCatalog();
          PreparedStatement stat = conn.prepareStatement(
             "SELECT DishName, DishPrice, DishDescription FROM Dishes WHERE SubMenu = ?");
          stat.setString(1, subMenu);
@@ -115,9 +108,9 @@ public class WokNTandoorDB implements Serializable {
                  allItemswHTML += "</td>";
              allItemswHTML += "<td class=\"menu-item-price\">$<span id=\"p"+ orderID + "\">" + String.format("%.2f", price) + "</span></td>";
              allItemswHTML += "<td class=\"w3-large w3-center\">" +
-"                            <button class=\"w3-button w3-transparent w3-text-khaki\" onclick=\"addSubtotal("+orderID+")\">+</button>" +
+"                            <button class=\"w3-button w3-transparent w3-text-khaki\" onclick= 'addSubtotal("+orderID+", \""+catID+"\")'>+</button>" +
 "                            <div id=\"q"+orderID+"\" class=\"w3-text-white\">0</div>" +
-"                            <button class=\"w3-button w3-transparent w3-text-khaki\" onclick=\"subtractSubtotal("+orderID+")\">-</button>" +
+"                            <button class=\"w3-button w3-transparent w3-text-khaki\" onclick= 'subtractSubtotal("+orderID+", \""+catID+"\")'>-</button>" +
 "                        </td></tr>";  
              orderID++;
          }
@@ -126,5 +119,33 @@ public class WokNTandoorDB implements Serializable {
       }
       catch(Exception e){return e.getMessage();}
     }
+    
+    public void addSubtotal(String dish) throws SQLException{
+        if (source == null) {
+            Logger.global.info("No database connection");
+        }
+        Connection conn = source.getConnection();
+        double price;
+        try{
+            PreparedStatement stat = conn.prepareStatement(
+                "SELECT DishPrice FROM Dishes WHERE DishName = ?");
+            stat.setString(1, dish);
+            ResultSet result = stat.executeQuery();
+            result.next();
+            price = result.getDouble("DishPrice");
+            subtotal += price; 
+            conn.close();
+        }    
+        catch(Exception e){}      
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+    
     
 }
