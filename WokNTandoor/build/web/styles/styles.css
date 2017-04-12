@@ -33,7 +33,7 @@ li, a.nav, a.homepage{
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   text-decoration: none;
 }
-.menu-category:hover{
+.menu-category:hover:not(.receiptForm){
   background-color: #333;
 }
 a:hover:not(.homepage):not(.overlay) {

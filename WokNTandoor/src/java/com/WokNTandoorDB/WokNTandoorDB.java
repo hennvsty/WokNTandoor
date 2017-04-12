@@ -101,7 +101,7 @@ public class WokNTandoorDB implements Serializable {
              allItemswHTML += "<tr>" +
 "                        <td class=\"menu-item-thumb\"></td>" +
 "                        <td class=\"menu-item-info\">" +
-"                            <div class=\"w3-large w3-padding-4\">" + name + "</div>"; 
+"                            <div class=\"w3-large w3-padding-4\" id=\"n"+orderID+"\">" + name + "</div>"; 
              if(description!= null)
                  allItemswHTML += "<div class=\"w3-small w3-padding-4\">" + description + "</div>";
              else

@@ -68,10 +68,33 @@ function toggle(table_id){
     }
 }
 function placeOrder(){
-    var quantity, item_id, subtotal;
-    item_id = 0;
+    document.getElementById("orderContainer").style.display = 'none';
+    document.getElementById("orderReceipt").style.display = 'block';
+    var quantity, item_id, subtotal, orderItems, price;
+    var dishesList = ""
+    var quantitiesList = "";
+    orderItems = document.getElementById("orderItems");
     subtotal = document.getElementById("subtotal");
     subtotal = parseFloat(subtotal.innerHTML).toFixed(2);
-    quantity = document.getElementById("q" + item_id);
-       
+    var total = document.getElementById("receiptTotal");
+    total.innerHTML = parseFloat(subtotal * 1.0775).toFixed(2);
+    for(item_id = 0; item_id < 7003; item_id++){
+        quantity = document.getElementById("q" + item_id);
+        price = document.getElementById("p" + item_id);
+        if(quantity !== null){
+            var quantity_in = parseInt(quantity.innerHTML);
+            if(quantity_in > 0){
+                var dishName = document.getElementById("n" + item_id);
+                orderItems.innerHTML +=  "<tr><td class=\"menu-item-info\"><div class=\"w3-large w3-padding-4\">"+dishName.innerHTML+
+                        "</div></td>"+"<td class=\"w3-large w3-center\"><div class=\"w3-text-white\">"
+                        +quantity_in+" X</div></td><td class=\"menu-item-price\">$<span>"+price.innerHTML+"</span></td>"
+                        +"</tr>";
+                dishesList += "%" + dishName.innerHTML + "%";
+                quantitiesList += "%" + quantity_in + "%";
+            }
+        }
+    }
+    document.getElementById("total").value = parseFloat(subtotal * 1.0775).toFixed(2);
+    document.getElementById("dishOrder").value = dishesList;
+    document.getElementById("quantitiesOrder").value = quantitiesList;
 }

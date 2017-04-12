@@ -29,15 +29,15 @@ and open the template in the editor.
     <header>
         <ui:include src="nav.xhtml"/>
     </header>
-            
-    <body>
+    <body>       
+    <div id='orderContainer'>
         <div class="w3-content w3-padding-32" style="max-width:800px">
             <button class="w3-button w3-transparent w3-text-white tablinks w3-red" onclick="openTab(event, 'Full Menu')">Full Menu</button>
             <button class="w3-button w3-transparent w3-text-white tablinks" onclick="openTab(event, 'Lunch Menu')">Lunch Menu</button>
-            <button action="placeOrder()" id="orderButton" class="w3-button w3-transparent w3-text-white tablinks" style='display: none'>Place Order</button>
+            <button onclick="placeOrder()" id="orderButton" class="w3-button w3-transparent w3-text-white tablinks" style='display: none'>Place Order</button>
             <span class="w3-right w3-large w3-text-white">Subtotal: $<span id="subtotal">0.00</span></span>
             
-            <div id="Full Menu" class="w3-padding-32 food-menu">
+            <div id="Full Menu" class="food-menu">
                 <h5 class="menu-category" onclick="toggle('7001')">What's Good
                     <span style="display: none; float: right;" id="good">0.00</span>
                 </h5>
@@ -45,7 +45,7 @@ and open the template in the editor.
                     <tr>
                         <td class="menu-item-thumb"></td>
                         <td class="menu-item-info">
-                            <div class="w3-large w3-padding-4">Chicken Tikka Masala</div>
+                            <div class="w3-large w3-padding-4" id="n7001">Chicken Tikka Masala</div>
                             <div class="w3-small w3-padding-4">Chicken kabob in a rich tomato cream gravy</div>
                         </td>
                         <td class="menu-item-price">$<span id="p7001">9.99</span></td>
@@ -205,26 +205,25 @@ and open the template in the editor.
                             </select> 
                         </td>
                         </tr>
-                    </table>
+                    </table> 
             </div>
         </div>
-
-        <!--
-        <div id="popup" class="w3-modal">
-            <div class="w3-modal-content w3-card-4 w3-animate-opacity">
-                <header class="popup-title w3-container">
-                    <span class="w3-button w3-transparent w3-display-topright"
-                          onclick="document.getElementById('popup').style.display='none'">&#215;</span>
-                    <h5>Chicken Tikka Masala</h5>
-                </header>
-                <div class="w3-container">
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                </div>
-            </div>
+    </div>
+        <div id ='orderReceipt' class='w3-content w3-padding-32 w3-bordered' style="display: none">
+            <h:form>
+                <h5 class ='menu-category receiptForm w3-large'>Review Order 
+                    <span><br/>Total (Including Tax): </span><span style="float: right;" id="receiptTotal" >0.00</span>
+                    <input type="hidden" id="total" name="total" value="0.00"/>
+                    <input type="hidden" id="dishOrder" name="dishes" value=" "/>
+                    <input type="hidden" id="quantitiesOrder" name="quantities" value=" "/>
+                </h5>
+                <table class="w3-bordered w3-content" id="orderItems">    
+                </table>
+                <input type="email" placeholder="Email" name="email" alt='Add Email' required='true'/>
+                <h:commandButton action="#{placeOrder.confirmOrder()}" class="w3-button w3-transparent w3-text-white tablinks" value = "Confirm Order">
+                </h:commandButton>
+            </h:form>
         </div>
-        -->
-
     </body>
     <ui:include src="footer.xhtml"/>
 </html>
