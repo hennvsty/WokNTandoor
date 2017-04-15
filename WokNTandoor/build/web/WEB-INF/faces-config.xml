@@ -13,4 +13,11 @@
         <managed-bean-class>placeOrder.placeOrder</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <description>
+</description>
+        <managed-bean-name>adminControls</managed-bean-name>
+        <managed-bean-class>admin.adminControls</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>
