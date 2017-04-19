@@ -26,6 +26,7 @@ public class adminControls implements Serializable{
     @Resource(name="jdbc/wokntandoordb")
     private DataSource source; 
     private String outputMessage;
+    private String action;
 
     
     /**
@@ -33,7 +34,8 @@ public class adminControls implements Serializable{
      */
     
     public adminControls() {
-        outputMessage = "";        
+        outputMessage = "";   
+        action = "";
     }
     public String getOutputMessage() {
         return outputMessage;
@@ -50,6 +52,15 @@ public class adminControls implements Serializable{
     public void addDish(String dishName, String dishDescription, String dishPrice){
         
     }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+    
     public String login(){
         FacesContext face = FacesContext.getCurrentInstance();
         Map<String, String> map = face.getExternalContext().getRequestParameterMap();
@@ -58,22 +69,26 @@ public class adminControls implements Serializable{
         if(username != null && password != null){
         if(username.equals("NatashaB") && password.equals("brahmbhatt")){
             try {
-                face.getExternalContext().redirect("Admin.xhtml");
-            } catch (IOException ex) {
+                return "Admin";
+            } catch (Exception ex) {
                 Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if(username.equals("") || password.equals("")) {
+            action = "";
             return "Must fill in empty fields";
         } 
         else {
             if (!username.equals("NatashaB")){
+                action = "";
                 outputMessage = "<br/>Invalid UserID";
             }
             if (!password.equals("brahmbhatt")){  
+                action = "";
                 outputMessage = "<br/>Invalid Password";
             }
             if(!username.equals("NatashaB") && !password.equals("brahmbhatt")){
+                action = "";
                 outputMessage = "<br/>Invalid UserID<br/>Invalid Password";
             }        
         }
