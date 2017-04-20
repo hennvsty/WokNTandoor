@@ -34,6 +34,10 @@ function addSubtotal(item_id, cat_id) {
     if (x.style.display == 'none') {
         x.style.display = 'inline';
     }
+    if(item_id > 7001){
+        var bowlSelection = document.getElementById("c" + item_id);
+        bowlSelection.innerHTML += bowlSelection;
+    }
 }
 
 function subtractSubtotal(item_id, cat_id) {
@@ -78,12 +82,13 @@ function placeOrder(){
     subtotal = parseFloat(subtotal.innerHTML).toFixed(2);
     var total = document.getElementById("receiptTotal");
     total.innerHTML = parseFloat(subtotal * 1.0775).toFixed(2);
-    for(item_id = 0; item_id < 7003; item_id++){
+    for(item_id = 0; item_id <= 7004; item_id++){
         quantity = document.getElementById("q" + item_id);
         price = document.getElementById("p" + item_id);
         if(quantity !== null){
             var quantity_in = parseInt(quantity.innerHTML);
             if(quantity_in > 0){
+                if(item_id <= 7001){
                 var dishName = document.getElementById("n" + item_id);
                 orderItems.innerHTML +=  "<tr><td class=\"menu-item-info\"><div class=\"w3-large w3-padding-4\">"+dishName.innerHTML+
                         "</div></td>"+"<td class=\"w3-large w3-center\"><div class=\"w3-text-white\">"
@@ -91,9 +96,15 @@ function placeOrder(){
                         +"</tr>";
                 dishesList += "%" + dishName.innerHTML + "%";
                 quantitiesList += "%" + quantity_in + "%";
+                }
+                else{
+                    
+                }
             }
         }
+        
     }
+    
     document.getElementById("total").value = parseFloat(subtotal * 1.0775).toFixed(2);
     document.getElementById("dishOrder").value = dishesList;
     document.getElementById("quantitiesOrder").value = quantitiesList;
