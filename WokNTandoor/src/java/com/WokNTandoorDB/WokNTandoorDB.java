@@ -8,9 +8,11 @@ package com.WokNTandoorDB;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
@@ -23,8 +25,8 @@ import javax.sql.DataSource;
 @ManagedBean(name = "wokNTandoorDB", eager = true)
 @SessionScoped
 public class WokNTandoorDB implements Serializable {
-    @Resource(name="jdbc/wokntandoordb")
-    private DataSource source;
+    //@Resource(name="jdbc/wokntandoordb")
+    //private DataSource source;
     private String dishName;
     private String dishPrice;
     private String dishSpecialPrice;
@@ -33,6 +35,10 @@ public class WokNTandoorDB implements Serializable {
     private String dishPicture;
     private int orderID;
     private double subtotal;
+    private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    private final String DB_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/ebdb?zeroDateTimeBehavior=convertToNull";
+    private final String USER = "wokntandoor";
+    private final String PASS = "kickme531";
     
     /**
      * Creates a new instance of WokNTandoorDB
@@ -43,11 +49,16 @@ public class WokNTandoorDB implements Serializable {
     }
     
     public String getMenuItems(String subMenu) throws SQLException{
-      if (source == null) {
-        Logger.global.info("No database connection");
-        return "no data source connection";
-      }
-      Connection conn = source.getConnection();
+        try {
+            /*if (source == null) {
+            Logger.global.info("No database connection");
+            return "no data source connection";
+            }*/
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(WokNTandoorDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
       if(conn == null){
           return "no database connection";
       }
@@ -71,6 +82,8 @@ public class WokNTandoorDB implements Serializable {
              else
                  allItemswHTML += "<hr />";
          }
+         result.close();
+         stat.close();
          conn.close();
          return allItemswHTML;
       }
@@ -78,14 +91,16 @@ public class WokNTandoorDB implements Serializable {
     }
     
     public String getOrderItems(String subMenu, String catID) throws SQLException{
-      if (source == null) {
-        Logger.global.info("No database connection");
-        return "no data source connection";
-      }
-      Connection conn = source.getConnection();
-      if(conn == null){
-          return "no database connection";
-      }
+      try {
+            /*if (source == null) {
+            Logger.global.info("No database connection");
+            return "no data source connection";
+            }*/
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(WokNTandoorDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
       String name, description;
       double price;
       try{
@@ -121,10 +136,16 @@ public class WokNTandoorDB implements Serializable {
     }
     
     public void addSubtotal(String dish) throws SQLException{
-        if (source == null) {
+        try {
+            /*if (source == null) {
             Logger.global.info("No database connection");
+            return "no data source connection";
+            }*/
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(WokNTandoorDB.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Connection conn = source.getConnection();
+      Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         double price;
         try{
             PreparedStatement stat = conn.prepareStatement(

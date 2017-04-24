@@ -19,11 +19,26 @@
     </figure>
     <div id="headerTan"/>
     <ul class="topnav" id="myTopnav">
-            <li><a class ="navTan" href = "homepage.xhtml">Home</a></li>
-            <li><a class ="navTan" href = "Menu.xhtml">Menu</a></li>
-            <li><a class ="navTan" href = "Order.xhtml">Order Now</a></li>
-            <li><a class ="navTan" href = "News.xhtml">News</a></li>
-            <li><a class ="navTan" href = "AboutPage.xhtml">About</a></li> 
+            <li><a>
+            <h:form>
+                <h:commandLink action ="homepage" value = "Home" styleClass="navTan"/>
+            </h:form></a></li>
+        <li><a>
+            <h:form>
+                <h:commandLink action ="Menu" value = "Menu" styleClass="navTan"/>
+            </h:form></a></li>
+        <li><a>
+            <h:form>
+                <h:commandLink action ="Order" value = "Order Now" styleClass="navTan"/>
+            </h:form></a></li>
+        <li><a>
+            <h:form>
+                <h:commandLink action ="News" value = "News" styleClass="navTan"/>
+            </h:form></a></li>
+        <li><a>
+            <h:form>
+                <h:commandLink action ="AboutPage" value = "About" styleClass="navTan"/>
+            </h:form></a></li> 
             <li class="icon">
                 <a href="javascript:void(0);" style="font-size:15px;" onclick="mobileNav()">
                     <img class ="active" src="icon.png" alt="Wok n Tandoor Logo"/>
