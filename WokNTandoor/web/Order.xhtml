@@ -145,7 +145,7 @@ and open the template in the editor.
                         </td>
                         <td>
                             <div class="w3-large w3-padding-4 w3-text-white">Choose 1</div>
-                            <select id='mysticBowlSel'>
+                            <select id='c7002'>
                                 <option value="chickenTikka">Chicken Tikka</option>
                                 <option value="cTMasala">Chicken Tikka Masala</option>
                                 <option value="pTMasala">Paneer Tikka Masala</option>
@@ -172,7 +172,7 @@ and open the template in the editor.
                         </td>
                         <td>
                             <div class="w3-large w3-padding-4 w3-text-white">Choose 1</div>
-                            <select id='wokBowlSel'>
+                            <select id='c7003'>
                                 <option value="chickenMachurian">Chicken Manchurian</option>
                                 <option value="chillyChicken">Chilly Chicken</option>
                                 <option value="chillyPaneer">Chilly Paneer</option>
@@ -190,15 +190,15 @@ and open the template in the editor.
                         <td class="menu-item-info">
                             <div class="w3-large w3-padding-4">Chicken Tikka, Paneer Tikka, Veggie</div>
                         </td>
-                        <td class="menu-item-price">$<span id="p7002">8.95</span></td>
+                        <td class="menu-item-price">$<span id="p7004">8.95</span></td>
                         <td class="w3-large w3-center">
-                            <button class="w3-button w3-transparent w3-text-khaki" onclick = "addSubtotal(7002, 'lunchPizzaPrice')">+</button>
-                            <div id="q7002" class="w3-text-white">0</div>
-                            <button class="w3-button w3-transparent w3-text-khaki" onclick="subtractSubtotal(7002, 'lunchPizzaPrice')">-</button>
+                            <button class="w3-button w3-transparent w3-text-khaki" onclick = "addSubtotal(7004, 'lunchPizzaPrice')">+</button>
+                            <div id="q7004" class="w3-text-white">0</div>
+                            <button class="w3-button w3-transparent w3-text-khaki" onclick="subtractSubtotal(7004, 'lunchPizzaPrice')">-</button>
                         </td>
                         <td>
                             <div class="w3-large w3-padding-4 w3-text-white">Choose 1</div>
-                            <select id='lunchPizzaSel'>
+                            <select id='c7004'>
                                 <option value="chickenTikka">Chicken Tikka</option>
                                 <option value="veggie">Veggie</option>
                                 <option value="paneerTikka">Paneer Tikka</option>
@@ -223,6 +223,8 @@ and open the template in the editor.
                 <h:commandButton action="#{placeOrder.confirmOrder()}" class="w3-button w3-transparent w3-text-white tablinks" value = "Confirm Order">
                 </h:commandButton>
             </h:form>
+          
+
         </div>
     </body>
     <ui:include src="footer.xhtml"/>
