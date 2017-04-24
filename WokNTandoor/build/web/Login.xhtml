@@ -141,7 +141,10 @@ footer {
 </h:head>
     <body>
         <div class='preload login--container'>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
   <div class='login--form'>
     <h:form>
     <div class='login--username-container'>
@@ -151,8 +154,8 @@ footer {
     <div class='login--password-container'>
       <label>Password</label>
       <input placeholder='Password' id ="password" name="password" type='password' required="true" value=""/>
-      <h:commandButton value="Login">
-          <f:ajax render="message"/>
+      <h:commandButton value="Login" id="login" action="#{adminControls.login()}">
+          <f:ajax execute="login" render="message" />
       </h:commandButton> 
       <h:outputText id="message" value="#{adminControls.login()}" escape="false"/>
     </div>    
