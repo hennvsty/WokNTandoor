@@ -7,6 +7,10 @@ package admin;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +31,6 @@ public class adminControls implements Serializable{
     private DataSource source; 
     private String outputMessage;
     private String action;
-
     
     /**
      * Creates a new instance of adminControls
@@ -43,14 +46,79 @@ public class adminControls implements Serializable{
     public void setOutputMessage(String outputMessage) {
         this.outputMessage = outputMessage;
     }
-    public void changeDishPrice(String dish, double price){
+    
+    public void changeDishPrice(String dishName, double dishPrice) throws SQLException {
+        if (source == null) {
+            Logger.global.info("No database source");
+            return;
+        }
+        Connection conn = source.getConnection();
+        if(conn == null){
+            Logger.global.info("No database connection");
+            return;
+        }
         
+        try {
+            PreparedStatement stmt =
+                    conn.prepareStatement("UPDATE Dishes SET DishPrice = ? WHERE DishName = ?");
+            stmt.setDouble(1, dishPrice);
+            stmt.setString(1, dishName);
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    public void removeDish(String dish){
+    
+    public void removeDish(String dishName) throws SQLException {
+        if (source == null) {
+            Logger.global.info("No database source");
+            return;
+        }
+        Connection conn = source.getConnection();
+        if(conn == null){
+            Logger.global.info("No database connection");
+            return;
+        }
         
+        try {
+            PreparedStatement stmt =
+                    conn.prepareStatement("DELETE FROM Dishes WHERE DishName = ?");
+            stmt.setString(1, dishName);
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    public void addDish(String dishName, String dishDescription, String dishPrice){
+    
+    public void addDish(String dishName, double dishPrice, String dishDescription) throws SQLException {
+        if (source == null) {
+            Logger.global.info("No database source");
+            return;
+        }
+        Connection conn = source.getConnection();
+        if(conn == null){
+            Logger.global.info("No database connection");
+            return;
+        }
         
+        int result = 0;
+        try{
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Dishes "
+                    + "(DishName, DishPrice, DishDescription) "
+                    + "SELECT ?, ?, ? FROM Dishes "
+                    + "WHERE (DishName = ?) HAVING count(*) = 0");
+            stmt.setString(1, dishName);
+            stmt.setDouble(2, dishPrice);
+            stmt.setString(3, dishDescription);
+            result = stmt.executeUpdate(); // not 0 = success
+            stmt.close();
+            conn.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public String getAction() {
