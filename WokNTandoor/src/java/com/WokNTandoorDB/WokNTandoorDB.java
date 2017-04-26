@@ -101,20 +101,24 @@ public class WokNTandoorDB implements Serializable {
             Logger.getLogger(WokNTandoorDB.class.getName()).log(Level.SEVERE, null, ex);
         }
       Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-      String name, description;
+      String name, description, picPath;
       double price;
       try{
          PreparedStatement stat = conn.prepareStatement(
-            "SELECT DishName, DishPrice, DishDescription FROM Dishes WHERE SubMenu = ?");
+            "SELECT DishName, DishPrice, DishDescription, DishPicture FROM Dishes WHERE SubMenu = ?");
          stat.setString(1, subMenu);
          ResultSet result = stat.executeQuery();
          String allItemswHTML = "";
          while (result.next()) {
              name = result.getString("DishName");
              price = result.getDouble("DishPrice");
+             picPath = result.getString("DishPicture");
+             if(picPath == null){
+                 picPath = "";
+             }
              description = result.getString("DishDescription");
              allItemswHTML += "<tr>" +
-"                        <td class=\"menu-item-thumb\"></td>" +
+"                        <td class=\"menu-item-thumb\"><img src=\""+picPath+"\" alt=\"\" style=\"width:100px;height:100px;\"/></td>" +
 "                        <td class=\"menu-item-info\">" +
 "                            <div class=\"w3-large w3-padding-4\" id=\"n"+orderID+"\">" + name + "</div>"; 
              if(description!= null)

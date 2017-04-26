@@ -16,9 +16,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.sql.DataSource;
+import org.primefaces.event.FileUploadEvent;
 
 /**
  *
@@ -45,6 +47,10 @@ public class adminControls implements Serializable{
     }
     public void setOutputMessage(String outputMessage) {
         this.outputMessage = outputMessage;
+    }
+    public void handleFileUpload(FileUploadEvent event) {
+        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
     public void changeDishPrice(String dishName, double dishPrice) throws SQLException {
