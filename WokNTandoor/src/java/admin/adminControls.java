@@ -42,14 +42,17 @@ public class adminControls implements Serializable{
         outputMessage = "";   
         action = "";
     }
+    
     public String getOutputMessage() {
         return outputMessage;
     }
+    
     public void setOutputMessage(String outputMessage) {
         this.outputMessage = outputMessage;
     }
+    
     public void handleFileUpload(FileUploadEvent event) {
-        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
