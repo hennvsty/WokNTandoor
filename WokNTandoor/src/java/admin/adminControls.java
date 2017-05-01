@@ -8,6 +8,7 @@ package admin;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,6 +34,17 @@ public class adminControls implements Serializable{
     private DataSource source; 
     private String outputMessage;
     private String action;
+    private String dishName;
+    private String dishPrice;
+    private String dishSpecialPrice;
+    private String dishDescription;
+    private String subMenu;
+    private String dishPicture;
+    private int orderID;
+    private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    private final String DB_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/ebdb?zeroDateTimeBehavior=convertToNull";
+    private final String USER = "wokntandoor";
+    private final String PASS = "kickme531";
     
     /**
      * Creates a new instance of adminControls
@@ -56,17 +68,74 @@ public class adminControls implements Serializable{
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
-    public void changeDishPrice(String dishName, double dishPrice) throws SQLException {
-        if (source == null) {
-            Logger.global.info("No database source");
-            return;
-        }
-        Connection conn = source.getConnection();
-        if(conn == null){
-            Logger.global.info("No database connection");
-            return;
+     
+    // Used to populate the dishes menu in the admin control page
+    // Work in progress
+    public String getEditableItems(String subMenu, String catID) throws SQLException {
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        // admin-test: copy of dishes database to test admin queries
+        final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
+        Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
+        //Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        
+        String name, description, picPath;
+        double price;
+        try{
+            PreparedStatement stat = conn.prepareStatement(
+                  "SELECT DishName, DishPrice, DishDescription, DishPicture FROM Dishes WHERE SubMenu = ?");
+            stat.setString(1, subMenu);
+            ResultSet result = stat.executeQuery();
+            String allItemswHTML = "";
+            while (result.next()) {
+                name = result.getString("DishName");
+                price = result.getDouble("DishPrice");
+                picPath = result.getString("DishPicture");
+                if(picPath == null){
+                    picPath = "";
+                }
+                description = result.getString("DishDescription");
+                allItemswHTML += "<tr>" +
+  "                        <td class=\"menu-item-thumb\"><img src=\""+picPath+"\" alt=\"\" style=\"width:100px;height:100px;\"/></td>" +
+  "                        <td class=\"menu-item-info\">" +
+  "                            <div class=\"w3-large w3-padding-4\" id=\"n"+orderID+"\">" + name + "</div>"; 
+                if(description!= null) {
+                    allItemswHTML += "<div class=\"w3-small w3-padding-4\">" + description + "</div>";
+                } else {
+                    allItemswHTML += "</td>";
+                }
+                allItemswHTML += "<td class=\"menu-item-price\">$<span id=\"p"+ orderID + "\">" + String.format("%.2f", price) + "</span></td>";
+                allItemswHTML += "<td class=\"w3-large w3-center\">" +
+  "                            <button class=\"w3-button w3-transparent w3-text-khaki\" onclick= 'addSubtotal("+orderID+", \""+catID+"\")'>+</button>" +
+  "                            <div id=\"q"+orderID+"\" class=\"w3-text-white\">0</div>" +
+  "                            <button class=\"w3-button w3-transparent w3-text-khaki\" onclick= 'subtractSubtotal("+orderID+", \""+catID+"\")'>-</button>" +
+  "                        </td><td class=\"w3-large\">\n" +
+"                            <button class=\"btn btn-default btn-sm\" onclick=\"modifyDish()\"><span class=\"glyphicon glyphicon-pencil\"></span></button>\n" +
+"                            <button class=\"btn btn-danger btn-sm\" onclick=\"removeDish()\"><span class=\"glyphicon glyphicon-remove\"></span></button>\n" +
+"                        </td></tr>";  
+                orderID++;
+            }
+            conn.close();
+            return allItemswHTML;
+        }
+        catch(Exception e) { return e.getMessage(); }
+    }
+    
+    public void changeDishPrice(String dishName, double dishPrice) throws SQLException {
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // admin-test: copy of dishes database to test admin queries
+        final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
+        Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
+        //Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         try {
             PreparedStatement stmt =
                     conn.prepareStatement("UPDATE Dishes SET DishPrice = ? WHERE DishName = ?");
@@ -80,16 +149,16 @@ public class adminControls implements Serializable{
     }
     
     public void removeDish(String dishName) throws SQLException {
-        if (source == null) {
-            Logger.global.info("No database source");
-            return;
-        }
-        Connection conn = source.getConnection();
-        if(conn == null){
-            Logger.global.info("No database connection");
-            return;
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        // admin-test: copy of dishes database to test admin queries
+        final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
+        Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
+        //Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         try {
             PreparedStatement stmt =
                     conn.prepareStatement("DELETE FROM Dishes WHERE DishName = ?");
@@ -102,16 +171,16 @@ public class adminControls implements Serializable{
     }
     
     public void addDish(String dishName, double dishPrice, String dishDescription) throws SQLException {
-        if (source == null) {
-            Logger.global.info("No database source");
-            return;
-        }
-        Connection conn = source.getConnection();
-        if(conn == null){
-            Logger.global.info("No database connection");
-            return;
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        // admin-test: copy of dishes database to test admin queries
+        final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
+        Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
+        //Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         int result = 0;
         try{
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Dishes "

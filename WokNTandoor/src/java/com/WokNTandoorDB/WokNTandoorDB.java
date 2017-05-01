@@ -139,63 +139,6 @@ public class WokNTandoorDB implements Serializable {
       catch(Exception e){return e.getMessage();}
     }
     
-    // Used to populate the dishes menu in the admin control page
-    // Work in progress
-    public String getEditableItems(String subMenu, String catID) throws SQLException {
-        try {
-            /*if (source == null) {
-            Logger.global.info("No database connection");
-            return "no data source connection";
-            }*/
-            Class.forName(JDBC_DRIVER);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(WokNTandoorDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        // admin-test: copy of dishes database to test admin queries
-        final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
-        Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
-        //Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        
-        String name, description, picPath;
-        double price;
-        try{
-            PreparedStatement stat = conn.prepareStatement(
-                  "SELECT DishName, DishPrice, DishDescription, DishPicture FROM Dishes WHERE SubMenu = ?");
-            stat.setString(1, subMenu);
-            ResultSet result = stat.executeQuery();
-            String allItemswHTML = "";
-            while (result.next()) {
-                name = result.getString("DishName");
-                price = result.getDouble("DishPrice");
-                picPath = result.getString("DishPicture");
-                if(picPath == null){
-                    picPath = "";
-                }
-                description = result.getString("DishDescription");
-                allItemswHTML += "<tr>" +
-  "                        <td class=\"menu-item-thumb\"><img src=\""+picPath+"\" alt=\"\" style=\"width:100px;height:100px;\"/></td>" +
-  "                        <td class=\"menu-item-info\">" +
-  "                            <div class=\"w3-large w3-padding-4\" id=\"n"+orderID+"\">" + name + "</div>"; 
-                if(description!= null) {
-                    allItemswHTML += "<div class=\"w3-small w3-padding-4\">" + description + "</div>";
-                } else {
-                    allItemswHTML += "</td>";
-                }
-                allItemswHTML += "<td class=\"menu-item-price\">$<span id=\"p"+ orderID + "\">" + String.format("%.2f", price) + "</span></td>";
-                allItemswHTML += "<td class=\"w3-large w3-center\">" +
-  "                            <button class=\"w3-button w3-transparent w3-text-khaki\" onclick= 'addSubtotal("+orderID+", \""+catID+"\")'>+</button>" +
-  "                            <div id=\"q"+orderID+"\" class=\"w3-text-white\">0</div>" +
-  "                            <button class=\"w3-button w3-transparent w3-text-khaki\" onclick= 'subtractSubtotal("+orderID+", \""+catID+"\")'>-</button>" +
-  "                        </td></tr>";  
-                orderID++;
-            }
-            conn.close();
-            return allItemswHTML;
-        }
-        catch(Exception e) { return e.getMessage(); }
-    }
-    
     public void addSubtotal(String dish) throws SQLException{
         try {
             /*if (source == null) {

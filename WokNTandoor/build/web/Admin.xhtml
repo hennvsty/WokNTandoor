@@ -9,7 +9,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>WnT - Administrator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -67,6 +68,13 @@ and open the template in the editor.
                 <input class="w3-input w3-border w3-section" type="text" placeholder="Enter name" required=""/>
                 <input class="w3-input w3-border w3-section" type="text" placeholder="Enter price" required=""/>
                 <textarea class="w3-input w3-border w3-section" type="text" placeholder="Enter description" style="resize:none"/>
+                <h:form>
+                    <h:outputLabel value="Input a Picture" />
+                    <p:fileUpload fileUploadListener="#{adminControls.handleFileUpload}" mode="advanced" dragDropSupport="true"
+                              update="messages" sizeLimit="1000000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+                    <p:growl id="messages" showDetail="true" />
+                </h:form>
             </div>
             <footer class="w3-container">
                 <div class="w3-padding-8 w3-right">
@@ -118,70 +126,70 @@ and open the template in the editor.
                     <span style="display: none; float: right;" id="chatPrice">0.00</span>
                 </h5>
                 <table class="w3-bordered w3-content" id="chat" style="display:none">
-                    <h:outputText value = "#{wokNTandoorDB.getOrderItems('Chat Corner', 'chatPrice')}" escape = "false"/>
+                    <h:outputText value = "#{adminControls.getEditableItems('Chat Corner', 'chatPrice')}" escape = "false"/>
                 </table>
                 
                 <h5 class="menu-category" onclick="toggle('kati')" >Kati Roll
                     <span style="display: none; float: right;" id="katiPrice">0.00</span>
                 </h5>
                 <table class="w3-bordered w3-content" id="kati" style="display:none">
-                    <h:outputText value = "#{wokNTandoorDB.getOrderItems('Kati Roll', 'katiPrice')}" escape = "false"/>
+                    <h:outputText value = "#{adminControls.getEditableItems('Kati Roll', 'katiPrice')}" escape = "false"/>
                 </table>
                 
                 <h5 class="menu-category" onclick="toggle('tanonfire')">Tandoor on Fire
                     <span style="display: none; float: right;" id="tanPrice">0.00</span>
                 </h5>
                 <table class="w3-bordered w3-content" id="tanonfire" style="display:none">
-                    <h:outputText value = "#{wokNTandoorDB.getOrderItems('Tandoor on Fire', 'tanPrice')}" escape = "false"/>
+                    <h:outputText value = "#{adminControls.getEditableItems('Tandoor on Fire', 'tanPrice')}" escape = "false"/>
                 </table>
                 
                 <h5 class="menu-category" onclick="toggle('mystic')">Mystic Masala (does not come with rice or naan)
                     <span style="display: none; float: right;" id="mysticPrice">0.00</span>
                 </h5>
                 <table class="w3-bordered w3-content" id="mystic" style="display:none">
-                    <h:outputText value = "#{wokNTandoorDB.getOrderItems('Mystic Masala', 'mysticPrice')}" escape = "false"/>
+                    <h:outputText value = "#{adminControls.getEditableItems('Mystic Masala', 'mysticPrice')}" escape = "false"/>
                 </table>
                 
                 <h5 class="menu-category" onclick="toggle('wokonfire')">Wok on Fire (does not come with rice or naan)
                     <span style="display: none; float: right;" id="wokPrice">0.00</span>
                 </h5>
                 <table class="w3-bordered w3-content" id="wokonfire" style="display:none">
-                    <h:outputText value = "#{wokNTandoorDB.getOrderItems('Wok on Fire', 'wokPrice')}" escape = "false"/>
+                    <h:outputText value = "#{adminControls.getEditableItems('Wok on Fire', 'wokPrice')}" escape = "false"/>
                 </table>
                 
                 <h5 class="menu-category" onclick="toggle('pizza')">Pizza
                     <span style="display: none; float: right;" id="pizzaPrice">0.00</span>
                 </h5>
                 <table class="w3-bordered w3-content" id="pizza" style="display:none">
-                    <h:outputText value = "#{wokNTandoorDB.getOrderItems('Pizza', 'pizzaPrice')}" escape = "false"/>
+                    <h:outputText value = "#{adminControls.getEditableItems('Pizza', 'pizzaPrice')}" escape = "false"/>
                 </table>
                 
                 <h5 class="menu-category" onclick="toggle('rice')">Rice
                     <span style="display: none; float: right;" id="ricePrice">0.00</span>
                 </h5>
                 <table class="w3-bordered w3-content" id="rice" style="display:none">
-                    <h:outputText value = "#{wokNTandoorDB.getOrderItems('Rice', 'ricePrice')}" escape = "false"/>
+                    <h:outputText value = "#{adminControls.getEditableItems('Rice', 'ricePrice')}" escape = "false"/>
                 </table>
                 
                 <h5 class="menu-category" onclick="toggle('naan')">Naan (don't forget to add the rice and naan to your order!)
                     <span style="display: none; float: right;" id="naanPrice">0.00</span>
                 </h5>
                 <table class="w3-bordered w3-content" id="naan" style="display:none">
-                    <h:outputText value = "#{wokNTandoorDB.getOrderItems('Naan', 'naanPrice')}" escape = "false"/>
+                    <h:outputText value = "#{adminControls.getEditableItems('Naan', 'naanPrice')}" escape = "false"/>
                 </table>
                 
                 <h5 class="menu-category" onclick="toggle('desserts')">Dessert
                     <span style="display: none; float: right;" id="dessertPrice">0.00</span>
                 </h5>
                 <table class="w3-bordered w3-content" id="desserts" style="display:none">
-                    <h:outputText value = "#{wokNTandoorDB.getOrderItems('Desserts', 'dessertPrice')}" escape = "false"/>
+                    <h:outputText value = "#{adminControls.getEditableItems('Desserts', 'dessertPrice')}" escape = "false"/>
                 </table>
                 
                 <h5 class="menu-category" onclick="toggle('beverages')">Beverages
                     <span style="display: none; float: right;" id="beveragePrice">0.00</span>
                 </h5>
                 <table class="w3-bordered w3-content" id="beverages" style="display:none">
-                    <h:outputText value = "#{wokNTandoorDB.getOrderItems('Beverages', 'beveragePrice')}" escape = "false"/>
+                    <h:outputText value = "#{adminControls.getEditableItems('Beverages', 'beveragePrice')}" escape = "false"/>
                 </table>
             </div>
             
@@ -267,29 +275,6 @@ and open the template in the editor.
             </div>
         </div>
     </div>
-        
-        <div id ='orderReceipt' class='w3-content w3-padding-32 w3-bordered' style="display: none">
-            <h:form>
-                <h5 class ='menu-category receiptForm w3-large'>Review Order 
-                    <span><br/>Total (Including Tax): </span><span style="float: right;" id="receiptTotal" >0.00</span>
-                    <input type="hidden" id="total" name="total" value="0.00"/>
-                    <input type="hidden" id="dishOrder" name="dishes" value=" "/>
-                    <input type="hidden" id="quantitiesOrder" name="quantities" value=" "/>
-                </h5>
-                <table class="w3-bordered w3-content" id="orderItems">    
-                </table>
-                <input type="email" placeholder="Email" name="email" alt='Add Email' required='true'/>
-                <h:commandButton action="#{placeOrder.confirmOrder()}" class="w3-button w3-transparent w3-text-white tablinks" value = "Confirm Order">
-                </h:commandButton>
-            </h:form>
-        </div>
-                
-        <h:form>
-            <p:fileUpload fileUploadListener="#{adminControls.handleFileUpload}" mode="advanced" dragDropSupport="true"
-                              update="messages" sizeLimit="1000000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-
-            <p:growl id="messages" showDetail="true" />
-        </h:form>
         -->
     </body>
     <ui:include src="/WEB-INF/footer.xhtml"/>
