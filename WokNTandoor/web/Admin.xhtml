@@ -68,13 +68,6 @@ and open the template in the editor.
                 <input class="w3-input w3-border w3-section" type="text" placeholder="Enter name" required=""/>
                 <input class="w3-input w3-border w3-section" type="text" placeholder="Enter price" required=""/>
                 <textarea class="w3-input w3-border w3-section" type="text" placeholder="Enter description" style="resize:none"/>
-                <h:form>
-                    <h:outputLabel value="Input a Picture" />
-                    <p:fileUpload fileUploadListener="#{adminControls.handleFileUpload}" mode="advanced" dragDropSupport="true"
-                              update="messages" sizeLimit="1000000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-
-                    <p:growl id="messages" showDetail="true" />
-                </h:form>
             </div>
             <footer class="w3-container">
                 <div class="w3-padding-8 w3-right">
@@ -86,7 +79,12 @@ and open the template in the editor.
             </footer>
         </div>
     </div>
-
+        <h:form>
+            <h:outputLabel value="Input a Picture" />
+            <p:fileUpload fileUploadListener="#{adminControls.handleFileUpload}" mode="advanced" dragDropSupport="true"
+                update="messages" sizeLimit="1000000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{adminControls.uploadedPicture}" />
+            <p:growl id="messages" showDetail="true" />
+        </h:form>
     <div id="modalModify" class="w3-modal">
         <div class="w3-modal-content w3-card-4" style="max-width:480px">
             <div class="w3-container">

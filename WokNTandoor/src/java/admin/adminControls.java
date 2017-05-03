@@ -5,9 +5,12 @@
  */
 package admin;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -47,6 +50,7 @@ public class adminControls implements Serializable{
     private String subMenu;
     private String dishPicture;
     private int orderID;
+    private UploadedFile uploadedPicture;
     private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private final String DB_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/ebdb?zeroDateTimeBehavior=convertToNull";
     private final String USER = "wokntandoor";
@@ -69,18 +73,32 @@ public class adminControls implements Serializable{
         this.outputMessage = outputMessage;
     }
     
+    public UploadedFile getUploadedPicture()
+    {
+        return uploadedPicture;
+    }
+
+    public void setUploadedPicture(UploadedFile uploadedPicture)
+    {
+        this.uploadedPicture = uploadedPicture;
+    }
+    
     public void handleFileUpload(FileUploadEvent event) {
         UploadedFile uploadedFile = event.getFile();
+        String path = FacesContext.getCurrentInstance().getExternalContext()
+            .getRealPath("/images");
         String fileName = uploadedFile.getFileName();
-        String contentType = uploadedFile.getContentType();
+        String contentTypes = uploadedFile.getContentType();
         try (InputStream input = uploadedFile.getInputstream()){
-            Path folder = Paths.get("/images");
-            Path file = Files.createTempFile(folder, fileName + "-", "." + contentType);
-            Files.copy(input, file, StandardCopyOption.REPLACE_EXISTING);
+            //OutputStream out = new FileOutputStream(file);
+            File tempFile = new File("/images", event.getFile().getFileName());
             FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
-        catch(IOException e){}
+        catch(Exception e){
+            FacesMessage message = new FacesMessage(e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
         
     }
     
@@ -231,6 +249,7 @@ public class adminControls implements Serializable{
         if(username != null && password != null){
         if(username.equals("NatashaB") && password.equals("brahmbhatt")){
             try {
+                face.getExternalContext().redirect("Admin.xhtml");
                 return "Admin";
             } catch (Exception ex) {
                 Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
