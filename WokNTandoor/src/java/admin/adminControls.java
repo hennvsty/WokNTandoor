@@ -6,7 +6,12 @@
 package admin;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,6 +27,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.sql.DataSource;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -64,8 +70,18 @@ public class adminControls implements Serializable{
     }
     
     public void handleFileUpload(FileUploadEvent event) {
-        FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
-        FacesContext.getCurrentInstance().addMessage(null, message);
+        UploadedFile uploadedFile = event.getFile();
+        String fileName = uploadedFile.getFileName();
+        String contentType = uploadedFile.getContentType();
+        try (InputStream input = uploadedFile.getInputstream()){
+            Path folder = Paths.get("/images");
+            Path file = Files.createTempFile(folder, fileName + "-", "." + contentType);
+            Files.copy(input, file, StandardCopyOption.REPLACE_EXISTING);
+            FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+        catch(IOException e){}
+        
     }
     
      
