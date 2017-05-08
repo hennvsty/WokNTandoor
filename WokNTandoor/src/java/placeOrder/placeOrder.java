@@ -23,6 +23,7 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
+import javax.faces.application.FacesMessage;
 
 /**
  *
@@ -115,11 +116,9 @@ public class placeOrder implements Serializable{
         String quantities = map.get("quantities").trim();
         quantity = quantities.split("%");
         email = map.get("email");
-        try {
-            face.getExternalContext().redirect("placeOrder.xhtml");
-        } catch (IOException ex) {
-            Logger.getLogger(placeOrder.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        FacesMessage message = new FacesMessage("Order Confirmed");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        //return "placeOrder.xhtml";
     }
     
     public String sendConfirmationEmail(){

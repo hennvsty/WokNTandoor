@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>WnT - Order</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -44,7 +45,7 @@ and open the template in the editor.
                 <table class="w3-bordered w3-content" id="7001">
                     <tr>
                         <td class="menu-item-thumb">
-                            <h:graphicImage value="/images/ChickenTikkaMasala.jpg" style="width:100px; height:100px"/>
+                            <img src="images/ChickenTikkaMasala.jpg" alt="" style="width:100px;height:100px;" id="i7001"/>
                         </td>
                         <td class="menu-item-info">
                             <div class="w3-large w3-padding-4" id="n7001">Chicken Tikka Masala</div>
@@ -133,6 +134,7 @@ and open the template in the editor.
                 <h5 class="menu-category" onclick="toggle('mysticBowl')">Mystic Bowl
                     <span style="display: none; float: right;" id="mysticBowlPrice">0.00</span>
                 </h5>
+                 <p hidden ="true" id="n7002">Mystic Bowl</p> 
                     <table class="w3-bordered w3-content" id="mysticBowl" style="display:none">
                         <tr>
                         <td class="menu-item-thumb"></td>
@@ -146,13 +148,13 @@ and open the template in the editor.
                             <button class="w3-button w3-transparent w3-text-khaki" onclick="subtractSubtotal(7002, 'mysticBowlPrice')">-</button>
                         </td>
                         <td>
-                            <div class="w3-large w3-padding-4 w3-text-white">Choose 1</div>
+                            <div class="w3-large w3-padding-4 w3-text-white">Choose Flavor</div>
                             <select id='c7002'>
-                                <option value="chickenTikka">Chicken Tikka</option>
-                                <option value="cTMasala">Chicken Tikka Masala</option>
-                                <option value="pTMasala">Paneer Tikka Masala</option>
-                                <option value="chanaMasala">Chana Masala</option>
-                                <option value="saagPaneer">Saag Paneer</option>
+                                <option value="Chicken Tikka">Chicken Tikka</option>
+                                <option value="Chicken Tikka Masala">Chicken Tikka Masala</option>
+                                <option value="Paneer Tikka Masala">Paneer Tikka Masala</option>
+                                <option value="Chana Masala">Chana Masala</option>
+                                <option value="Saag Paneer">Saag Paneer</option>
                             </select> 
                         </td>
                         </tr>
@@ -160,6 +162,7 @@ and open the template in the editor.
                 <h5 class="menu-category" onclick="toggle('wokBowl')">Wok Bowl
                     <span style="display: none; float: right;" id="wokBowlPrice">0.00</span>
                 </h5>
+                <p hidden ="true" id="n7003">Wok Bowl</p> 
                 <table class="w3-bordered w3-content" id="wokBowl" style="display:none">
                         <tr>
                         <td class="menu-item-thumb"></td>
@@ -175,10 +178,10 @@ and open the template in the editor.
                         <td>
                             <div class="w3-large w3-padding-4 w3-text-white">Choose 1</div>
                             <select id='c7003'>
-                                <option value="chickenMachurian">Chicken Manchurian</option>
-                                <option value="chillyChicken">Chilly Chicken</option>
-                                <option value="chillyPaneer">Chilly Paneer</option>
-                                <option value="hotGarlicEggplant">Hot Garlic Eggplant</option>
+                                <option value="Chicken Manchurian">Chicken Manchurian</option>
+                                <option value="Chilly Chicken">Chilly Chicken</option>
+                                <option value="Chilly Paneer">Chilly Paneer</option>
+                                <option value="Hot Garlic Eggplant">Hot Garlic Eggplant</option>
                             </select> 
                         </td>
                         </tr>
@@ -186,6 +189,7 @@ and open the template in the editor.
                 <h5 class="menu-category" onclick="toggle('lunchPizza')">Lunch Pizza
                     <span style="display: none; float: right;" id="lunchPizzaPrice">0.00</span>
                 </h5>
+                <p hidden ="true" id="n7004">Lunch Pizza</p> 
                     <table class="w3-bordered w3-content" id="lunchPizza" style="display:none">
                         <tr>
                         <td class="menu-item-thumb"></td>
@@ -201,9 +205,9 @@ and open the template in the editor.
                         <td>
                             <div class="w3-large w3-padding-4 w3-text-white">Choose 1</div>
                             <select id='c7004'>
-                                <option value="chickenTikka">Chicken Tikka</option>
-                                <option value="veggie">Veggie</option>
-                                <option value="paneerTikka">Paneer Tikka</option>
+                                <option value="Chicken Tikka">Chicken Tikka</option>
+                                <option value="Veggie">Veggie</option>
+                                <option value="Paneer Tikka">Paneer Tikka</option>
                             </select> 
                         </td>
                         </tr>
@@ -224,6 +228,7 @@ and open the template in the editor.
                 <input type="email" placeholder="Email" name="email" alt='Add Email' required='true'/>
                 <h:commandButton action="#{placeOrder.confirmOrder()}" class="w3-button w3-transparent w3-text-white tablinks" value = "Confirm Order">
                 </h:commandButton>
+                <p:growl id="orderConfirmed" showDetail="true" />
             </h:form>
           
 

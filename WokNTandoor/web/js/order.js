@@ -83,6 +83,10 @@ function placeOrder(){
     var total = document.getElementById("receiptTotal");
     total.innerHTML = parseFloat(subtotal * 1.0775).toFixed(2);
     for(item_id = 0; item_id <= 7004; item_id++){
+        var picPath = document.getElementById("i" + item_id);
+        if(picPath === null){
+            picPath = "";
+        }
         quantity = document.getElementById("q" + item_id);
         price = document.getElementById("p" + item_id);
         if(quantity !== null){
@@ -90,15 +94,24 @@ function placeOrder(){
             if(quantity_in > 0){
                 if(item_id <= 7001){
                 var dishName = document.getElementById("n" + item_id);
-                orderItems.innerHTML +=  "<tr><td class=\"menu-item-info\"><div class=\"w3-large w3-padding-4\">"+dishName.innerHTML+
-                        "</div></td>"+"<td class=\"w3-large w3-center\"><div class=\"w3-text-white\">"
-                        +quantity_in+" X</div></td><td class=\"menu-item-price\">$<span>"+price.innerHTML+"</span></td>"
+                orderItems.innerHTML +=  "<tr><td class=\"menu-item-thumb\"><img src=\""+picPath.src+"\" alt=\"\" style=\"width:100px;height:100px;\"/></td>"
+                        +"<td class=\"menu-item-info\"><div class=\"w3-large\">"+dishName.innerHTML+"</div></td>"
+                        +"<td class=\"w3-large\"><div class=\"w3-text-white\">"+quantity_in+" X</div></td>"
+                        +"<td class=\"menu-item-price\">$<span>"+price.innerHTML+"</span></td>"
                         +"</tr>";
-                dishesList += "%" + dishName.innerHTML + "%";
-                quantitiesList += "%" + quantity_in + "%";
+                    dishesList += "%" + dishName.innerHTML + "%";
+                    quantitiesList += "%" + quantity_in + "%";
                 }
                 else{
-                    
+                    var dishName = document.getElementById("n" + item_id);
+                    var selection = document.getElementById("c" + item_id).value;
+                    orderItems.innerHTML +=  "<tr><td class=\"menu-item-info\"><div class=\"w3-large w3-padding-4\">"+dishName.innerHTML+"</div></td>"
+                        +"<td class=\"w3-large\"><div class=\"w3-text-white\">Flavor: "+selection+"</div></td>"
+                        +"<td class=\"w3-large\"><div class=\"w3-text-white\">"+quantity_in+" X</div></td>"
+                        +"<td class=\"menu-item-price\">$<span>"+price.innerHTML+"</span></td>"
+                        +"</tr>";
+                    dishesList += "%" + dishName.innerHTML + "%";
+                    quantitiesList += "%" + quantity_in + "%";
                 }
             }
         }

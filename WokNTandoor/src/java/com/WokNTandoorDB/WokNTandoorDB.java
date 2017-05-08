@@ -118,7 +118,7 @@ public class WokNTandoorDB implements Serializable {
              }
              description = result.getString("DishDescription");
              allItemswHTML += "<tr>" +
-"                        <td class=\"menu-item-thumb\"><img src=\""+picPath+"\" alt=\"\" style=\"width:100px;height:100px;\"/></td>" +
+"                        <td class=\"menu-item-thumb\"><img src=\""+picPath+"\" alt=\"\" style=\"width:100px;height:100px;\" id=\"i"+ orderID + "\"/></td>" +
 "                        <td class=\"menu-item-info\">" +
 "                            <div class=\"w3-large w3-padding-4\" id=\"n"+orderID+"\">" + name + "</div>"; 
              if(description!= null)
