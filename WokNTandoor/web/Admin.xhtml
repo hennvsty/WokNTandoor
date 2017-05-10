@@ -61,7 +61,9 @@ and open the template in the editor.
             </div>
         </div>
     </div>
-        
+    <div>
+        <img src="https://www.dropbox.com/s/0nhjc1nckrwfm4b/test.jpg?dl=1" alt="" style="width:100px;height:100px;"/>
+    </div>
     <div id="modalAdd" class="w3-modal">
         <div class="w3-modal-content w3-card-4" style="max-width:580px">
             <div class="w3-container">
@@ -97,9 +99,20 @@ and open the template in the editor.
             </div>
         </div>
     </div>
+<<<<<<< HEAD
         
     <div id="modalEdit" class="w3-modal">
         <div class="w3-modal-content w3-card-4" style="max-width:580px">
+=======
+        <h:form target="_blank">
+            <h:outputLabel value="Input a Picture" />
+            <p:fileUpload fileUploadListener="#{adminControls.handleFileUpload}" mode="advanced" dragDropSupport="true"
+                update="messages" sizeLimit="1000000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{adminControls.uploadedPicture}" />
+            <p:growl id="messages" showDetail="true" />
+        </h:form>
+    <div id="modalModify" class="w3-modal">
+        <div class="w3-modal-content w3-card-4" style="max-width:480px">
+>>>>>>> origin/master
             <div class="w3-container">
                 <h:form>
                     <div class="w3-section">
@@ -141,14 +154,14 @@ and open the template in the editor.
             <div class="w3-container">
                 <h4>Remove this dish?</h4>
             </div>
-            <footer class="w3-container">
+            <div class="w3-container">
                 <div class="w3-padding-8 w3-right">
                     <button class="btn btn-danger btn-md"
                             onclick="document.getElementById('modalRemove').style.display='none'"> OK </button>
                     <button class="btn btn-default btn-md"
                             onclick="document.getElementById('modalRemove').style.display='none'"> Cancel </button>
                 </div>
-            </footer>
+            </div>
         </div>
     </div>
                 

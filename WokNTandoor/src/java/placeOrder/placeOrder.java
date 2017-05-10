@@ -66,9 +66,9 @@ public class placeOrder implements Serializable{
         String dishesString = "";
         for(int i = 0; i < dishes.length; i++){
             if(!dishes[i].equals(""))
-                dishesString += dishes[i] + " X " + quantity[i] + "<br/>";   
+                dishesString += dishes[i] + " X " + quantity[i] + "\n";   
         }
-        dishesString += "$" + String.format("%.2f", subtotal) + "<br/>" + "email: " +email;
+        dishesString += "$" + String.format("%.2f", subtotal) + "\nEmail: " +email;
         return dishesString;
     }
 
@@ -116,7 +116,7 @@ public class placeOrder implements Serializable{
         String quantities = map.get("quantities").trim();
         quantity = quantities.split("%");
         email = map.get("email");
-        FacesMessage message = new FacesMessage("Order Confirmed");
+        FacesMessage message = new FacesMessage("Order Confirmed", sendConfirmationEmail());
         FacesContext.getCurrentInstance().addMessage(null, message);
         //return "placeOrder.xhtml";
     }
@@ -148,14 +148,15 @@ public class placeOrder implements Serializable{
         //compose message    
         try {    
             MimeMessage message = new MimeMessage(session);    
-            message.addRecipient(Message.RecipientType.TO,new InternetAddress(email));    
+            message.addRecipient(Message.RecipientType.TO,new InternetAddress(email));
+            message.addRecipient(Message.RecipientType.CC,new InternetAddress("henna.gohil@yahoo.com"));
             message.setSubject("Wok N Tandoor Order");    
             message.setContent(dishesString, "text/html");
            //send message  
             Transport.send(message);    
-            return "message sent successfully";    
+            return getDishesOrder();    
         } catch (MessagingException e) {
-            return e.getMessage();
+            return "Something went wrong:\n" + e.getMessage();
         }    
     }
 
