@@ -134,27 +134,6 @@ public class adminControls implements Serializable{
             inputStream.close();
         }
         
-        /*
-        UploadedFile uploadedFile = event.getFile();
-        InputStream input = uploadedFile.getInputstream();
-        OutputStream output = new FileOutputStream(new File("/images/","newPicture"));
-        try{
-            BufferedImage image = ImageIO.read(input);
-            ImageIO.write(image, "jpg", output);
-            IOUtils.copy(input, output);
-            FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-        }
-        catch(Exception e){
-            FacesMessage message = new FacesMessage(e.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null, message);
-        }
-        finally{
-            IOUtils.closeQuietly(input);
-            IOUtils.closeQuietly(output);
-        }*/
-
-        
     }
     
      
