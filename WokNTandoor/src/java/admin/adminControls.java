@@ -119,6 +119,11 @@ public class adminControls implements Serializable{
             DbxEntry.File uploadedFile = client.uploadFile("/images/test.jpg",
                 DbxWriteMode.add(), uploadedfile.getSize(), inputStream);
             String sharedUrl = client.createShareableUrl("/images/test.jpg");
+            if(sharedUrl.contains("dl=0")){
+                sharedUrl = sharedUrl.replace("dl=0", "dl=1");
+                picturePath = sharedUrl;
+            }
+            
         } catch (FileNotFoundException ex) {
             Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DbxException ex) {
