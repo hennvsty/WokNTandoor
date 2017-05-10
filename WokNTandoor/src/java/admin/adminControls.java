@@ -43,12 +43,28 @@ public class adminControls implements Serializable{
     private DataSource source; 
     private String outputMessage;
     private String action;
-    private String dishName;
-    private String dishPrice;
-    private String dishSpecialPrice;
-    private String dishDescription;
-    private String subMenu;
-    private String dishPicture;
+    
+    private class DishData {
+        public String name = "";
+        public double price = 0.0;
+        public double specialPrice = 0.0;
+        public String description = "";
+        public String picture = "";
+        public String subMenu = "";
+        
+        public void reset() {
+            name = "lol";
+            price = 0.0;
+            specialPrice = 0.0;
+            description = "";
+            picture = "";
+            subMenu = "";
+        }
+    }
+    
+    DishData addData = new DishData();
+    DishData editData = new DishData();
+    
     private int orderID;
     private UploadedFile uploadedPicture;
     private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -63,6 +79,42 @@ public class adminControls implements Serializable{
     public adminControls() {
         outputMessage = "";   
         action = "";
+    }
+    
+    public String getAddName() { return addData.name; }
+    public double getAddPrice() { return addData.price; }
+    public double getAddSpecialPrice() { return addData.specialPrice; }
+    public String getAddDescription() { return addData.description; }
+    public String getAddPicture() { return addData.picture; }
+    public String getAddSubMenu() { return addData.subMenu; }
+    
+    public void setAddName(String name) { addData.name = name; }
+    public void setAddPrice(double price) { addData.price = price; }
+    public void setAddSpecialPrice(double specialPrice) { addData.specialPrice = specialPrice; }
+    public void setAddDescription(String description) { addData.description = description; }
+    public void setAddPicture(String picture) { addData.picture = picture; }
+    public void setAddSubMenu(String subMenu) { addData.subMenu = subMenu; }
+    
+    public String getEditName() { return editData.name; }
+    public double getEditPrice() { return editData.price; }
+    public double getEditSpecialPrice() { return editData.specialPrice; }
+    public String getEditDescription() { return editData.description; }
+    public String getEditPicture() { return editData.picture; }
+    public String getEditSubMenu() { return editData.subMenu; }
+    
+    public void setEditName(String name) { editData.name = name; }
+    public void setEditPrice(double price) { editData.price = price; }
+    public void setEditSpecialPrice(double specialPrice) { editData.specialPrice = specialPrice; }
+    public void setEditDescription(String description) { editData.description = description; }
+    public void setEditPicture(String picture) { editData.picture = picture; }
+    public void setEditSubMenu(String subMenu) { editData.subMenu = subMenu; }
+    
+    public void clearAddData() {
+        addData.reset();
+    }
+    
+    public void clearEditData() {
+        editData.reset();
     }
     
     public String getOutputMessage() {
@@ -85,8 +137,7 @@ public class adminControls implements Serializable{
     
     public void handleFileUpload(FileUploadEvent event) {
         UploadedFile uploadedFile = event.getFile();
-        String path = FacesContext.getCurrentInstance().getExternalContext()
-            .getRealPath("/images");
+        String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/images");
         String fileName = uploadedFile.getFileName();
         String contentTypes = uploadedFile.getContentType();
         try (InputStream input = uploadedFile.getInputstream()){
@@ -99,9 +150,7 @@ public class adminControls implements Serializable{
             FacesMessage message = new FacesMessage(e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
-        
     }
-    
      
     // Used to populate the dishes menu in the admin control page
     // Work in progress
@@ -204,7 +253,7 @@ public class adminControls implements Serializable{
         }
     }
     
-    public void addDish(String dishName, double dishPrice, String dishDescription) throws SQLException {
+    public void addDish() throws SQLException {
         try {
             Class.forName(JDBC_DRIVER);
         } catch (ClassNotFoundException ex) {
@@ -218,12 +267,24 @@ public class adminControls implements Serializable{
         int result = 0;
         try{
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Dishes "
-                    + "(DishName, DishPrice, DishDescription) "
-                    + "SELECT ?, ?, ? FROM Dishes "
-                    + "WHERE (DishName = ?) HAVING count(*) = 0");
-            stmt.setString(1, dishName);
-            stmt.setDouble(2, dishPrice);
-            stmt.setString(3, dishDescription);
+                    + "(DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)");
+                    //+ "SELECT ?, ?, ? FROM Dishes "
+                    //+ "WHERE (DishName = ?) HAVING count(*) = 0");
+
+            /*stmt.setString(1, "test");
+            stmt.setDouble(2, 1.00);
+            stmt.setDouble(3, 2.00);
+            stmt.setString(4, "description");
+            stmt.setString(5, "pic");
+            stmt.setString(6, "submenu");*/
+                    
+            stmt.setString(1, getAddName());
+            stmt.setDouble(2, getAddPrice());
+            stmt.setDouble(3, getAddSpecialPrice());
+            stmt.setString(4, getAddDescription());
+            stmt.setString(5, getAddPicture());
+            stmt.setString(6, getAddSubMenu());
             result = stmt.executeUpdate(); // not 0 = success
             stmt.close();
             conn.close();
@@ -231,6 +292,10 @@ public class adminControls implements Serializable{
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public void clearInputFields() {
+        
     }
 
     public String getAction() {

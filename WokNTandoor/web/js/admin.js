@@ -13,14 +13,25 @@ function openTab(evt, foodMenu) {
     evt.currentTarget.className += " w3-red";
 }
 
-function addDish(){
+function displayAdd(){
     document.getElementById("modalAdd").style.display = 'block';
 }
 
-function modifyDish(){
-    document.getElementById("modalModify").style.display = 'block';
+function displayEdit(){
+    document.getElementById("modalEdit").style.display = 'block';
 }
 
-function removeDish(){
+function displayRemove(){
     document.getElementById("modalRemove").style.display = 'block';
 }
+
+function clearAdd() {
+    document.getElementById("addName").innerHTML = "";
+    document.getElementById("addPrice").innerHTML = "";
+    document.getElementById("addDescription").innerHTML = "";
+}
+
+function clearEdit() {
+    
+}
+
