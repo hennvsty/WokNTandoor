@@ -64,6 +64,7 @@ public class adminControls implements Serializable{
     private String dishPicture;
     private int orderID;
     private UploadedFile uploadedPicture;
+    private String picturePath;
     private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private final String DB_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/ebdb?zeroDateTimeBehavior=convertToNull";
     private final String USER = "wokntandoor";
@@ -76,6 +77,15 @@ public class adminControls implements Serializable{
     public adminControls() {
         outputMessage = "";   
         action = "";
+        picturePath = "";
+    }
+
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
     }
     
     public String getOutputMessage() {
@@ -108,7 +118,7 @@ public class adminControls implements Serializable{
             inputStream = uploadedfile.getInputstream();
             DbxEntry.File uploadedFile = client.uploadFile("/images/test.jpg",
                 DbxWriteMode.add(), uploadedfile.getSize(), inputStream);
-            String sharedUrl = client.createShareableUrl("/test.jpg");
+            String sharedUrl = client.createShareableUrl("/images/test.jpg");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DbxException ex) {
