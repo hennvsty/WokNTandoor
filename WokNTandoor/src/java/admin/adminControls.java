@@ -38,9 +38,11 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.imageio.ImageIO;
 import javax.sql.DataSource;
 import org.apache.commons.io.IOUtils;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -66,7 +68,7 @@ public class adminControls implements Serializable{
         public String subMenu = "";
         
         public void reset() {
-            name = "lol";
+            name = "";
             price = 0.0;
             specialPrice = 0.0;
             description = "";
@@ -78,7 +80,6 @@ public class adminControls implements Serializable{
     DishData addData = new DishData();
     DishData editData = new DishData();
     
-    private int orderID;
     private UploadedFile uploadedPicture;
     private String picturePath;
     private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -210,10 +211,11 @@ public class adminControls implements Serializable{
         finally{
             IOUtils.closeQuietly(input);
             IOUtils.closeQuietly(output);
-        }*/
+        }
 
         
 >>>>>>> origin/master
+        */
     }
      
     // Used to populate the dishes menu in the admin control page
@@ -238,6 +240,8 @@ public class adminControls implements Serializable{
             stat.setString(1, subMenu);
             ResultSet result = stat.executeQuery();
             String allItemswHTML = "";
+            
+            int orderID = 0;
             while (result.next()) {
                 name = result.getString("DishName");
                 price = result.getDouble("DishPrice");
@@ -295,28 +299,6 @@ public class adminControls implements Serializable{
         }
     }
     
-    public void removeDish(String dishName) throws SQLException {
-        try {
-            Class.forName(JDBC_DRIVER);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        // admin-test: copy of dishes database to test admin queries
-        final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
-        Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
-        //Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        try {
-            PreparedStatement stmt =
-                    conn.prepareStatement("DELETE FROM Dishes WHERE DishName = ?");
-            stmt.setString(1, dishName);
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    
     public void addDish() throws SQLException {
         try {
             Class.forName(JDBC_DRIVER);
@@ -335,13 +317,6 @@ public class adminControls implements Serializable{
                     + "VALUES (?, ?, ?, ?, ?, ?)");
                     //+ "SELECT ?, ?, ? FROM Dishes "
                     //+ "WHERE (DishName = ?) HAVING count(*) = 0");
-
-            /*stmt.setString(1, "test");
-            stmt.setDouble(2, 1.00);
-            stmt.setDouble(3, 2.00);
-            stmt.setString(4, "description");
-            stmt.setString(5, "pic");
-            stmt.setString(6, "submenu");*/
                     
             stmt.setString(1, getAddName());
             stmt.setDouble(2, getAddPrice());
@@ -358,10 +333,42 @@ public class adminControls implements Serializable{
         }
     }
     
-    public void clearInputFields() {
+    public void removeDish() throws SQLException {
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+        // admin-test: copy of dishes database to test admin queries
+        final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
+        Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
+        //Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        try {
+            PreparedStatement stmt =
+                    conn.prepareStatement("DELETE FROM Dishes WHERE DishName = ?");
+            stmt.setString(1, getParam(FacesContext.getCurrentInstance(), "name") );
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-
+    
+    // Example of how to obtain a string passed from JS
+    public void showDishName() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+        String output = params.get("name");
+        
+        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO, "Affected item", output));
+    }
+    
+    private String getParam(FacesContext fc, String param) {
+        Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+        return params.get(param);
+    }
+    
     public String getAction() {
         return action;
     }

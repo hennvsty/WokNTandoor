@@ -25,13 +25,7 @@ function displayRemove(){
     document.getElementById("modalRemove").style.display = 'block';
 }
 
-function clearAdd() {
-    document.getElementById("addName").innerHTML = "";
-    document.getElementById("addPrice").innerHTML = "";
-    document.getElementById("addDescription").innerHTML = "";
+function removeDish(id) {
+    var name = document.getElementById("n" + id).innerHTML.toString();
+    removeAction([ { name: 'name', value: name } ]);
 }
-
-function clearEdit() {
-    
-}
-

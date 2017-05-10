@@ -40,8 +40,8 @@ and open the template in the editor.
             <button onclick="displayAdd()" id="orderButton" class="btn btn-default btn-md w3-right"><span class="glyphicon glyphicon-plus"></span> Add dish </button>
             
             <div id="Full Menu" class="food-menu">
-                <h5 class="menu-category" onclick="toggle('7001')">What's Good</h5>
-                <table class="w3-section w3-content" id="7001">
+                <h5 class="menu-category" onclick="toggle('what')">What's Good</h5>
+                <table class="w3-section w3-content" id="what">
                     <tr>
                         <td class="menu-item-thumb">
                             <h:graphicImage value="/images/ChickenTikkaMasala.jpg" style="width:100px; height:100px"/>
@@ -52,8 +52,15 @@ and open the template in the editor.
                         </td>
                         <td class="menu-item-price">$<span id="p7001">9.99</span></td>
                         <td class="w3-large">
-                            <button class="btn btn-default btn-sm" onclick="displayEdit()"><span class="glyphicon glyphicon-pencil"></span></button>
-                            <button class="btn btn-danger btn-sm" onclick="displayRemove()"><span class="glyphicon glyphicon-remove"></span></button>
+                            <h:form>
+                                <button class="btn btn-default btn-sm" onclick="displayEdit()"><span class="glyphicon glyphicon-pencil"></span></button>
+                                <p:remoteCommand name="removeAction" actionListener="#{adminControls.removeDish}" />
+                                <p:commandLink class="btn btn-danger btn-sm w3-margin-left"
+                                               onclick="if (confirm('Remove this item?')) removeDish(7001);">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </p:commandLink>
+                            </h:form>
+                            <!--<button class="btn btn-danger btn-sm" onclick="displayRemove()"><span class="glyphicon glyphicon-remove"></span></button>-->
                         </td>
                     </tr>
                 </table>
@@ -86,7 +93,7 @@ and open the template in the editor.
                     <div class="w3-section">
                         <b>Upload a picture</b>
                         <p:fileUpload fileUploadListener="#{adminControls.handleFileUpload}" mode="advanced" dragDropSupport="true"
-                                  update="messages" sizeLimit="1000000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{adminControls.uploadedPicture}" />
+                                      update="messages" sizeLimit="1000000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{adminControls.uploadedPicture}" />
                         <p:growl id="messages" showDetail="true" />
                     </div>
                     
@@ -99,20 +106,17 @@ and open the template in the editor.
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-        
-    <div id="modalEdit" class="w3-modal">
+
+    <!--<div id="modalEdit" class="w3-modal">
         <div class="w3-modal-content w3-card-4" style="max-width:580px">
-=======
         <h:form target="_blank">
             <h:outputLabel value="Input a Picture" />
             <p:fileUpload fileUploadListener="#{adminControls.handleFileUpload}" mode="advanced" dragDropSupport="true"
                 update="messages" sizeLimit="1000000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{adminControls.uploadedPicture}" />
             <p:growl id="messages" showDetail="true" />
-        </h:form>
-    <div id="modalModify" class="w3-modal">
-        <div class="w3-modal-content w3-card-4" style="max-width:480px">
->>>>>>> origin/master
+        </h:form>-->
+    <div id="modalEdit" class="w3-modal">
+        <div class="w3-modal-content w3-card-4" style="max-width:580px">
             <div class="w3-container">
                 <h:form>
                     <div class="w3-section">
@@ -133,19 +137,16 @@ and open the template in the editor.
                     <div class="w3-section">
                         <b>Change picture</b>
                         <p:fileUpload fileUploadListener="#{adminControls.handleFileUpload}" mode="advanced" dragDropSupport="true"
-                                  update="messages" sizeLimit="1000000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{adminControls.uploadedPicture}" />
+                                      update="messages" sizeLimit="1000000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{adminControls.uploadedPicture}" />
                         <p:growl id="messages" showDetail="true" />
+                    </div>
+                    
+                    <div class="w3-padding-16 w3-right">
+                        <h:commandLink class="btn btn-primary btn-md"> Submit </h:commandLink>
+                        <h:commandLink class="btn btn-default btn-md w3-margin-left" action="#{adminControls.clearEditData()}"> Cancel </h:commandLink>
                     </div>
                 </h:form>
             </div>
-            <footer class="w3-container">
-                <div class="w3-padding-8 w3-right">
-                    <h:form>
-                        <h:commandLink class="btn btn-primary btn-md"> Submit </h:commandLink>
-                        <h:commandLink class="btn btn-default btn-md w3-margin-left" action="#{adminControls.clearEditData()}"> Cancel </h:commandLink>
-                    </h:form>
-                </div>
-            </footer>
         </div>
     </div>
 
