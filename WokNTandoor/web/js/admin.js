@@ -13,14 +13,57 @@ function openTab(evt, foodMenu) {
     evt.currentTarget.className += " w3-red";
 }
 
-function addDish(){
-    document.getElementById("modalAdd").style.display = 'block';
+function displayAddModal(){
+    document.getElementById("addForm:addName").value = "";
+    document.getElementById("addForm:addPrice").value = "0.0";
+    document.getElementById("addForm:addDescription").value = "";
+    document.getElementById("addModal").style.display = 'block';
 }
 
-function modifyDish(){
-    document.getElementById("modalModify").style.display = 'block';
+function hideAddModal() {
+    document.getElementById("addForm:addName").value = "";
+    document.getElementById("addForm:addPrice").value = "0.0";
+    document.getElementById("addForm:addDescription").value = "";
+    document.getElementById("addModal").style.display = 'none';
 }
 
-function removeDish(){
+function displayEditModal(id){
+    var name = document.getElementById("n" + id).innerHTML.toString();
+    var price = document.getElementById("p" + id).innerHTML.toString();
+    var description = document.getElementById("d" + id).innerHTML.toString();
+    
+    document.getElementById("editForm:editName").value = name;
+    document.getElementById("editForm:editPrice").value = price;
+    document.getElementById("editForm:editDescription").value = description;
+    
+    document.getElementById("editId").value = id.toString();
+    
+    document.getElementById("editModal").style.display = 'block';
+}
+
+function hideEditModal() {
+    document.getElementById("editModal").style.display = 'none';
+}
+
+function editDish() {
+    var id = document.getElementById("editId").value;
+    var name = document.getElementById("n" + id).innerHTML.toString();
+    var price = document.getElementById("p" + id).innerHTML.toString();
+    var description = document.getElementById("d" + id).innerHTML.toString();
+    
+    //getInputAction([ { name: 'name', value: name }, { name: 'price', value: price }, { name: 'description', value: description } ]);
+    
+    editAction([ { name: 'name', value: name } ]);
+    
+    hideEditModal();
+}
+
+function displayRemove(){
     document.getElementById("modalRemove").style.display = 'block';
 }
+
+function removeDish(id) {
+    var name = document.getElementById("n" + id).innerHTML.toString();
+    removeAction([ { name: 'name', value: name } ]);
+}
+

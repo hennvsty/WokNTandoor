@@ -33,27 +33,41 @@ and open the template in the editor.
         <ui:include src="/WEB-INF/nav.xhtml"/>
     </header>
     <body>
+        <h:form>
+            <p:remoteCommand name="setInputAction" actionListener="#{adminControls.setEditInput}" />
+            <p:remoteCommand name="editAction" actionListener="#{adminControls.editDish}" />
+            <p:remoteCommand name="removeAction" actionListener="#{adminControls.removeDish}" />
+        </h:form>
+        
     <div id='orderContainer' style="background-color:#5d0d0b">
         <div class="w3-content w3-padding-32" style="max-width:800px">
             <button class="w3-button w3-transparent w3-text-white tablinks w3-red" onclick="openTab(event, 'Full Menu')">Full Menu</button>
             <button class="w3-button w3-transparent w3-text-white tablinks" onclick="openTab(event, 'Lunch Menu')">Lunch Menu</button>
-            <button onclick="addDish()" id="orderButton" class="btn btn-default btn-md w3-right"><span class="glyphicon glyphicon-plus"></span> Add dish </button>
+            <button onclick="displayAddModal()" id="orderButton" class="btn btn-default btn-md w3-right"><span class="glyphicon glyphicon-plus"></span> Add dish </button>
             
             <div id="Full Menu" class="food-menu">
-                <h5 class="menu-category" onclick="toggle('7001')">What's Good</h5>
-                <table class="w3-section w3-content" id="7001">
+                <h5 class="menu-category" onclick="toggle('what')">What's Good</h5>
+                <table class="w3-section w3-content" id="what">
                     <tr>
                         <td class="menu-item-thumb">
                             <h:graphicImage value="/images/ChickenTikkaMasala.jpg" style="width:100px; height:100px"/>
                         </td>
                         <td class="menu-item-info">
                             <div class="w3-large w3-padding-4" id="n7001">Chicken Tikka Masala</div>
-                            <div class="w3-small w3-padding-4">Chicken kabob in a rich tomato cream gravy</div>
+                            <div class="w3-small w3-padding-4" id="d7001">Chicken kabob in a rich tomato cream gravy</div>
                         </td>
                         <td class="menu-item-price">$<span id="p7001">9.99</span></td>
                         <td class="w3-large">
-                            <button class="btn btn-default btn-sm" onclick="modifyDish()"><span class="glyphicon glyphicon-pencil"></span></button>
-                            <button class="btn btn-danger btn-sm" onclick="removeDish()"><span class="glyphicon glyphicon-remove"></span></button>
+                            <h:form>
+                                <p:commandLink class="btn btn-default btn-sm" onclick="displayEditModal(7001)">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </p:commandLink>
+                                <p:commandLink class="btn btn-danger btn-sm w3-margin-left"
+                                               onclick="if (confirm('Remove this item?')) removeDish(7001);">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </p:commandLink>
+                            </h:form>
+                            <!--<button class="btn btn-danger btn-sm" onclick="displayRemove()"><span class="glyphicon glyphicon-remove"></span></button>-->
                         </td>
                     </tr>
                 </table>
@@ -61,62 +75,73 @@ and open the template in the editor.
             </div>
         </div>
     </div>
+        
     <div>
         <img src="#{adminControls.picturePath}" alt="" style="width:100px;height:100px;"/>
     </div>
-    <div id="modalAdd" class="w3-modal">
-        <div class="w3-modal-content w3-card-4" style="max-width:480px">
+        
+    <div id="addModal" class="w3-modal">
+        <div class="w3-modal-content w3-card-4" style="max-width:580px">
             <div class="w3-container">
-                <input class="w3-input w3-border w3-section" type="text" placeholder="Enter name" required=""/>
-                <input class="w3-input w3-border w3-section" type="text" placeholder="Enter price" required=""/>
-                <textarea class="w3-input w3-border w3-section" type="text" placeholder="Enter description" style="resize:none"/>
+                <h:form id="addForm">
+                    <div class="w3-section">
+                        <b>Enter name</b>
+                        <h:inputText id="addName" class="w3-input w3-border" value="#{adminControls.addName}" />
+                    </div>
+                    
+                    <div class="w3-section">
+                        <b>Enter price</b>
+                        <h:inputText id="addPrice" class="w3-input w3-border" value="#{adminControls.addPrice}" converterMessage="Please enter a number" />
+                    </div>
+
+                    <div class="w3-section">
+                        <b>Enter description</b>
+                        <h:inputTextarea id="addDescription" class="w3-input w3-border" value="#{adminControls.addDescription}" />
+                    </div>
+                    
+                    <div class="w3-section">
+                        <b>Upload a picture</b>
+                        <p:fileUpload fileUploadListener="#{adminControls.handleFileUpload}" mode="advanced" dragDropSupport="true"
+                                      update="messages" sizeLimit="1000000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{adminControls.uploadedPicture}" />
+                        <p:growl id="messages" showDetail="true" />
+                    </div>
+                    
+                    <div class="w3-padding-16 w3-right">
+                        <p:commandLink class="btn btn-primary btn-md" action="#{adminControls.addDish()}" oncomplete="hideAddModal()">
+                            <span class="glyphicon glyphicon-plus"></span> Add </p:commandLink>
+                        <p:commandLink class="btn btn-default btn-md w3-margin-left" onclick="hideAddModal()"> Cancel </p:commandLink>
+                    </div>
+                </h:form>
             </div>
-            <footer class="w3-container">
-                <div class="w3-padding-8 w3-right">
-                    <button class="btn btn-primary btn-md"
-                            onclick="document.getElementById('modalAdd').style.display='none'"><span class="glyphicon glyphicon-plus"></span> Add </button>
-                    <button class="btn btn-default btn-md"
-                            onclick="document.getElementById('modalAdd').style.display='none'"> Cancel </button>
-                </div>
-            </footer>
-        </div>
-    </div>
-        <h:form target="_blank">
-            <h:outputLabel value="Input a Picture" />
-            <p:fileUpload fileUploadListener="#{adminControls.handleFileUpload}" mode="advanced" dragDropSupport="true"
-                update="messages" sizeLimit="1000000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{adminControls.uploadedPicture}" />
-            <p:growl id="messages" showDetail="true" />
-        </h:form>
-    <div id="modalModify" class="w3-modal">
-        <div class="w3-modal-content w3-card-4" style="max-width:480px">
-            <div class="w3-container">
-                <input class="w3-input w3-border w3-section" type="text" placeholder="Enter new name" required=""/>
-                <input class="w3-input w3-border w3-section" type="text" placeholder="Enter new price" required=""/>
-                <textarea class="w3-input w3-border w3-section" type="text" placeholder="Enter new description" style="resize:none"/>
-            </div>
-            <footer class="w3-container">
-                <div class="w3-padding-8 w3-right">
-                    <button class="btn btn-primary btn-md"
-                            onclick="document.getElementById('modalModify').style.display='none'"> Submit </button>
-                    <button class="btn btn-default btn-md"
-                            onclick="document.getElementById('modalModify').style.display='none'"> Cancel </button>
-                </div>
-            </footer>
         </div>
     </div>
         
-    <div id="modalRemove" class="w3-modal">
-        <div class="w3-modal-content w3-card-4" style="max-width:350px">
+    <div id="editModal" class="w3-modal">
+        <div class="w3-modal-content w3-card-4" style="max-width:580px">
             <div class="w3-container">
-                <h4>Remove this dish?</h4>
-            </div>
-            <div class="w3-container">
-                <div class="w3-padding-8 w3-right">
-                    <button class="btn btn-danger btn-md"
-                            onclick="document.getElementById('modalRemove').style.display='none'"> OK </button>
-                    <button class="btn btn-default btn-md"
-                            onclick="document.getElementById('modalRemove').style.display='none'"> Cancel </button>
-                </div>
+                <h:form id="editForm">
+                    <div class="w3-section">
+                        <b>Enter new name</b>
+                        <h:inputText id="editName" class="w3-input w3-border" value="#{adminControls.editName}" />
+                    </div>
+                    
+                    <div class="w3-section">
+                        <b>Enter new price</b>
+                        <h:inputText id="editPrice" class="w3-input w3-border" value="#{adminControls.editPrice}" converterMessage="Please enter a number" />
+                    </div>
+                    
+                    <div class="w3-section">
+                        <b>Enter new description</b>
+                        <h:inputTextarea id="editDescription" class="w3-input w3-border" value="#{adminControls.editDescription}" />
+                    </div>
+                    
+                    <div class="w3-padding-16 w3-right">
+                        <p:commandLink class="btn btn-primary btn-md" oncomplete="editDish()"> Submit </p:commandLink>
+                        <p:commandLink class="btn btn-default btn-md w3-margin-left" onclick="hideEditModal()"> Cancel </p:commandLink>
+                    </div>
+                    
+                    <input type="hidden" id="editId" value="" />
+                </h:form>
             </div>
         </div>
     </div>

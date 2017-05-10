@@ -38,9 +38,11 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.imageio.ImageIO;
 import javax.sql.DataSource;
 import org.apache.commons.io.IOUtils;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -56,13 +58,28 @@ public class adminControls implements Serializable{
     private DataSource source; 
     private String outputMessage;
     private String action;
-    private String dishName;
-    private String dishPrice;
-    private String dishSpecialPrice;
-    private String dishDescription;
-    private String subMenu;
-    private String dishPicture;
-    private int orderID;
+    
+    private class DishData {
+        public String name = "";
+        public double price = 0.0;
+        public double specialPrice = 0.0;
+        public String description = "";
+        public String picture = "";
+        public String subMenu = "";
+        
+        public void reset() {
+            name = "";
+            price = 0.0;
+            specialPrice = 0.0;
+            description = "";
+            picture = "";
+            subMenu = "";
+        }
+    }
+    
+    DishData addData = new DishData();
+    DishData editData = new DishData();
+    
     private UploadedFile uploadedPicture;
     private String picturePath;
     private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -87,6 +104,32 @@ public class adminControls implements Serializable{
     public void setPicturePath(String picturePath) {
         this.picturePath = picturePath;
     }
+    
+    public String getAddName() { return addData.name; }
+    public double getAddPrice() { return addData.price; }
+    public double getAddSpecialPrice() { return addData.specialPrice; }
+    public String getAddDescription() { return addData.description; }
+    public String getAddPicture() { return addData.picture; }
+    public String getAddSubMenu() { return addData.subMenu; }
+    public String getEditName() { return editData.name; }
+    public double getEditPrice() { return editData.price; }
+    public double getEditSpecialPrice() { return editData.specialPrice; }
+    public String getEditDescription() { return editData.description; }
+    public String getEditPicture() { return editData.picture; }
+    public String getEditSubMenu() { return editData.subMenu; }
+    
+    public void setAddName(String name) { addData.name = name; }
+    public void setAddPrice(double price) { addData.price = price; }
+    public void setAddSpecialPrice(double specialPrice) { addData.specialPrice = specialPrice; }
+    public void setAddDescription(String description) { addData.description = description; }
+    public void setAddPicture(String picture) { addData.picture = picture; }
+    public void setAddSubMenu(String subMenu) { addData.subMenu = subMenu; }
+    public void setEditName(String name) { editData.name = name; }
+    public void setEditPrice(double price) { editData.price = price; }
+    public void setEditSpecialPrice(double specialPrice) { editData.specialPrice = specialPrice; }
+    public void setEditDescription(String description) { editData.description = description; }
+    public void setEditPicture(String picture) { editData.picture = picture; }
+    public void setEditSubMenu(String subMenu) { editData.subMenu = subMenu; }
     
     public String getOutputMessage() {
         return outputMessage;
@@ -134,8 +177,44 @@ public class adminControls implements Serializable{
             inputStream.close();
         }
         
+<<<<<<< HEAD
+=======
+        /*
+        UploadedFile uploadedFile = event.getFile();
+<<<<<<< HEAD
+        String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/images");
+        String fileName = uploadedFile.getFileName();
+        String contentTypes = uploadedFile.getContentType();
+        try (InputStream input = uploadedFile.getInputstream()){
+            //OutputStream out = new FileOutputStream(file);
+            File tempFile = new File("/images", event.getFile().getFileName());
+=======
+        InputStream input = uploadedFile.getInputstream();
+        OutputStream output = new FileOutputStream(new File("/images/","newPicture"));
+        try{
+            BufferedImage image = ImageIO.read(input);
+            ImageIO.write(image, "jpg", output);
+            IOUtils.copy(input, output);
+>>>>>>> origin/master
+            FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+        catch(Exception e){
+            FacesMessage message = new FacesMessage(e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+<<<<<<< HEAD
+=======
+        finally{
+            IOUtils.closeQuietly(input);
+            IOUtils.closeQuietly(output);
+        }
+
+        
+>>>>>>> origin/master
+        */
+>>>>>>> origin/master
     }
-    
      
     // Used to populate the dishes menu in the admin control page
     // Work in progress
@@ -159,6 +238,8 @@ public class adminControls implements Serializable{
             stat.setString(1, subMenu);
             ResultSet result = stat.executeQuery();
             String allItemswHTML = "";
+            
+            int orderID = 0;
             while (result.next()) {
                 name = result.getString("DishName");
                 price = result.getDouble("DishPrice");
@@ -193,71 +274,31 @@ public class adminControls implements Serializable{
         catch(Exception e) { return e.getMessage(); }
     }
     
-    public void changeDishPrice(String dishName, double dishPrice) throws SQLException {
+    public void addDish() throws SQLException {
         try {
             Class.forName(JDBC_DRIVER);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        // admin-test: copy of dishes database to test admin queries
-        final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
-        Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
-        //Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        try {
-            PreparedStatement stmt =
-                    conn.prepareStatement("UPDATE Dishes SET DishPrice = ? WHERE DishName = ?");
-            stmt.setDouble(1, dishPrice);
-            stmt.setString(1, dishName);
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void removeDish(String dishName) throws SQLException {
-        try {
-            Class.forName(JDBC_DRIVER);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        // admin-test: copy of dishes database to test admin queries
-        final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
-        Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
-        //Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        try {
-            PreparedStatement stmt =
-                    conn.prepareStatement("DELETE FROM Dishes WHERE DishName = ?");
-            stmt.setString(1, dishName);
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void addDish(String dishName, double dishPrice, String dishDescription) throws SQLException {
-        try {
-            Class.forName(JDBC_DRIVER);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+
         // admin-test: copy of dishes database to test admin queries
         final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
         Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
         //Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         int result = 0;
         try{
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Dishes "
-                    + "(DishName, DishPrice, DishDescription) "
-                    + "SELECT ?, ?, ? FROM Dishes "
-                    + "WHERE (DishName = ?) HAVING count(*) = 0");
-            stmt.setString(1, dishName);
-            stmt.setDouble(2, dishPrice);
-            stmt.setString(3, dishDescription);
+            PreparedStatement stmt = conn.prepareStatement(
+                    "INSERT INTO Dishes (DishName, DishPrice, DishSpecialPrice, DishDescription, DishPicture, SubMenu) VALUES (?, ?, ?, ?, ?, ?)"
+            );
+            //+ "SELECT ?, ?, ? FROM Dishes "
+            //+ "WHERE (DishName = ?) HAVING count(*) = 0");
+                    
+            stmt.setString(1, getAddName());
+            stmt.setDouble(2, getAddPrice());
+            stmt.setDouble(3, getAddSpecialPrice());
+            stmt.setString(4, getAddDescription());
+            stmt.setString(5, getAddPicture());
+            stmt.setString(6, getAddSubMenu());
             result = stmt.executeUpdate(); // not 0 = success
             stmt.close();
             conn.close();
@@ -266,7 +307,97 @@ public class adminControls implements Serializable{
             e.printStackTrace();
         }
     }
-
+    
+    public void setEditInput() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        setEditName(getParam(fc, "name"));
+        setEditPrice(Double.parseDouble(getParam(fc, "price")));
+        //setEditSpecialPrice(Double.parseDouble(getParam(fc, "specialPrice")));
+        setEditDescription(getParam(fc, "description"));
+        //setEditPicture(getParam(fc, "picture"));
+        //setEditSubMenu(getParam(fc, "subMenu"));
+    }
+    
+    public void editDish() throws SQLException {
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // admin-test: copy of dishes database to test admin queries
+        final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
+        Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
+        //Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        try {
+            PreparedStatement stmt = conn.prepareStatement(
+                    "UPDATE Dishes SET DishName = ?, DishPrice = ?, DishSpecialPrice = ?, DishDescription = ?, DishPicture = ?, SubMenu = ? WHERE DishName = ?"
+            );
+            stmt.setString(1, getEditName());
+            stmt.setDouble(2, getEditPrice());
+            stmt.setDouble(3, getEditSpecialPrice());
+            stmt.setString(4, getEditDescription());
+            stmt.setString(5, getEditPicture());
+            stmt.setString(6, getEditSubMenu());
+            stmt.setString(7, getParam(FacesContext.getCurrentInstance(), "name") );
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void removeDish() throws SQLException {
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(adminControls.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // admin-test: copy of dishes database to test admin queries
+        final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
+        Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
+        //Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        try {
+            PreparedStatement stmt = conn.prepareStatement(
+                    "DELETE FROM Dishes WHERE DishName = ?"
+            );
+            stmt.setString(1, getParam(FacesContext.getCurrentInstance(), "name") );
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    // Example of how to obtain a string passed from JS
+    public void showAffected() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+        String output = params.get("name");
+        
+        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO, "Affected item", output));
+    }
+    
+    public void checkAddFields() {
+        String s = getAddName() + " " + getAddPrice() + " " + getAddSpecialPrice() + " " + getAddDescription() + " " + getAddPicture() + " " + getAddSubMenu();
+        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO, "All fields", s));
+    }
+    
+    public void checkEditFields() {
+        String s = getEditName() + " " + getEditPrice() + " " + getEditSpecialPrice() + " " + getEditDescription() + " " + getEditPicture() + " " + getEditSubMenu();
+        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO, "All fields", s));
+    }
+    
+    public void doNothing() {
+        String s = getEditName() + " " + getEditPrice() + " " + getEditSpecialPrice() + " " + getEditDescription() + " " + getEditPicture() + " " + getEditSubMenu();
+    }
+    
+    private String getParam(FacesContext fc, String param) {
+        Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+        return params.get(param);
+    }
+    
     public String getAction() {
         return action;
     }
