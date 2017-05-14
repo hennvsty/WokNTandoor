@@ -37,9 +37,11 @@ import javax.annotation.Resource;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 import org.apache.commons.io.IOUtils;
 import org.primefaces.context.RequestContext;
@@ -176,9 +178,10 @@ public class adminControls implements Serializable{
         } finally {
             inputStream.close();
         }
+    }
         
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
         /*
         UploadedFile uploadedFile = event.getFile();
 <<<<<<< HEAD
@@ -213,12 +216,10 @@ public class adminControls implements Serializable{
         
 >>>>>>> origin/master
         */
->>>>>>> origin/master
-    }
+//>>>>>>> origin/master
      
     // Used to populate the dishes menu in the admin control page
-    // Work in progress
-    public String getEditableItems(String subMenu, String catID) throws SQLException {
+    public String getEditableItems(String subMenu) throws SQLException {
         try {
             Class.forName(JDBC_DRIVER);
         } catch (ClassNotFoundException ex) {
@@ -244,28 +245,36 @@ public class adminControls implements Serializable{
                 name = result.getString("DishName");
                 price = result.getDouble("DishPrice");
                 picPath = result.getString("DishPicture");
-                if(picPath == null){
+                if (picPath == null){
                     picPath = "";
                 }
-                description = result.getString("DishDescription");
-                allItemswHTML += "<tr>" +
-  "                        <td class=\"menu-item-thumb\"><img src=\""+picPath+"\" alt=\"\" style=\"width:100px;height:100px;\"/></td>" +
-  "                        <td class=\"menu-item-info\">" +
-  "                            <div class=\"w3-large w3-padding-4\" id=\"n"+orderID+"\">" + name + "</div>"; 
-                if(description!= null) {
-                    allItemswHTML += "<div class=\"w3-small w3-padding-4\">" + description + "</div>";
-                } else {
-                    allItemswHTML += "</td>";
+                description = result.getString("DishDescription");                
+ 
+                allItemswHTML +=
+                        "<tr>" +
+                            "<td class=\"menu-item-thumb\"><img src=\"" + picPath + "\" + alt=\"\" style=\"width:100px; height:100px\"/></td>" +
+                            "<td class=\"menu-item-info\">" +
+                                "<div class=\"w3-large w3-padding-4\" id=\"n" + orderID + "\">" + name + "</div>";
+                if (description != null) {
+                    allItemswHTML +=
+                                "<div class=\"w3-small w3-padding-4\" id=\"d" + orderID + "\">" + description + "</div>";
                 }
-                allItemswHTML += "<td class=\"menu-item-price\">$<span id=\"p"+ orderID + "\">" + String.format("%.2f", price) + "</span></td>";
-                allItemswHTML += "<td class=\"w3-large w3-center\">" +
-  "                            <button class=\"w3-button w3-transparent w3-text-khaki\" onclick= 'addSubtotal("+orderID+", \""+catID+"\")'>+</button>" +
-  "                            <div id=\"q"+orderID+"\" class=\"w3-text-white\">0</div>" +
-  "                            <button class=\"w3-button w3-transparent w3-text-khaki\" onclick= 'subtractSubtotal("+orderID+", \""+catID+"\")'>-</button>" +
-  "                        </td><td class=\"w3-large\">\n" +
-"                            <button class=\"btn btn-default btn-sm\" onclick=\"modifyDish()\"><span class=\"glyphicon glyphicon-pencil\"></span></button>\n" +
-"                            <button class=\"btn btn-danger btn-sm\" onclick=\"removeDish()\"><span class=\"glyphicon glyphicon-remove\"></span></button>\n" +
-"                        </td></tr>";  
+                allItemswHTML +=
+                            "</td>" +
+                            "<td class=\"menu-item-price\">$<span id=\"p" + orderID + "\">" + String.format("%.2f", price) + "</span></td>" +
+                            "<td class=\"w3-large\">" +
+                                "<h:form>" +
+                                    "<p:commandLink class=\"btn btn-default btn-sm\" onclick=\"displayEditModal(" + orderID + ")\">" +
+                                        "<span class=\"glyphicon glyphicon-pencil\"></span>" +
+                                    "</p:commandLink>" +
+                                    "<p:commandLink class=\"btn btn-danger btn-sm w3-margin-left\"" +
+                                        "onclick=\"if (confirm('Remove this item?')) removeDish(" + orderID + ");\">" +
+                                        "<span class=\"glyphicon glyphicon-remove\"></span>" +
+                                    "</p:commandLink>" +
+                                "</h:form>" +
+                            "</td>" +
+                        "</tr>";
+                
                 orderID++;
             }
             conn.close();
@@ -347,7 +356,7 @@ public class adminControls implements Serializable{
         }
     }
     
-    public void removeDish() throws SQLException {
+    public void removeDish() throws SQLException, IOException {
         try {
             Class.forName(JDBC_DRIVER);
         } catch (ClassNotFoundException ex) {
@@ -366,6 +375,12 @@ public class adminControls implements Serializable{
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        try {
+            reload();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -389,8 +404,9 @@ public class adminControls implements Serializable{
         RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO, "All fields", s));
     }
     
-    public void doNothing() {
-        String s = getEditName() + " " + getEditPrice() + " " + getEditSpecialPrice() + " " + getEditDescription() + " " + getEditPicture() + " " + getEditSubMenu();
+    public void reload() throws IOException {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
     
     private String getParam(FacesContext fc, String param) {

@@ -13,6 +13,15 @@ function openTab(evt, foodMenu) {
     evt.currentTarget.className += " w3-red";
 }
 
+function toggle(table_id){
+    var x = document.getElementById(table_id);
+    if (x.style.display === 'none') {
+        x.style.display = 'table';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
 function displayAddModal(){
     document.getElementById("addForm:addName").value = "";
     document.getElementById("addForm:addPrice").value = "0.0";
@@ -48,11 +57,7 @@ function hideEditModal() {
 function editDish() {
     var id = document.getElementById("editId").value;
     var name = document.getElementById("n" + id).innerHTML.toString();
-    var price = document.getElementById("p" + id).innerHTML.toString();
-    var description = document.getElementById("d" + id).innerHTML.toString();
-    
-    //getInputAction([ { name: 'name', value: name }, { name: 'price', value: price }, { name: 'description', value: description } ]);
-    
+
     editAction([ { name: 'name', value: name } ]);
     
     hideEditModal();
