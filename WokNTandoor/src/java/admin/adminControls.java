@@ -164,7 +164,7 @@ public class adminControls implements Serializable{
             String sharedUrl = client.createShareableUrl("/images/test.jpg");
             if(sharedUrl.contains("dl=0")){
                 sharedUrl = sharedUrl.replace("dl=0", "dl=1");
-                picturePath = sharedUrl;
+                setAddPicture(sharedUrl);
             }
             
         } catch (FileNotFoundException ex) {
@@ -177,43 +177,6 @@ public class adminControls implements Serializable{
             inputStream.close();
         }
         
-<<<<<<< HEAD
-=======
-        /*
-        UploadedFile uploadedFile = event.getFile();
-<<<<<<< HEAD
-        String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/images");
-        String fileName = uploadedFile.getFileName();
-        String contentTypes = uploadedFile.getContentType();
-        try (InputStream input = uploadedFile.getInputstream()){
-            //OutputStream out = new FileOutputStream(file);
-            File tempFile = new File("/images", event.getFile().getFileName());
-=======
-        InputStream input = uploadedFile.getInputstream();
-        OutputStream output = new FileOutputStream(new File("/images/","newPicture"));
-        try{
-            BufferedImage image = ImageIO.read(input);
-            ImageIO.write(image, "jpg", output);
-            IOUtils.copy(input, output);
->>>>>>> origin/master
-            FacesMessage message = new FacesMessage("Successful", event.getFile().getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-        }
-        catch(Exception e){
-            FacesMessage message = new FacesMessage(e.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null, message);
-        }
-<<<<<<< HEAD
-=======
-        finally{
-            IOUtils.closeQuietly(input);
-            IOUtils.closeQuietly(output);
-        }
-
-        
->>>>>>> origin/master
-        */
->>>>>>> origin/master
     }
      
     // Used to populate the dishes menu in the admin control page
@@ -282,9 +245,9 @@ public class adminControls implements Serializable{
         }
 
         // admin-test: copy of dishes database to test admin queries
-        final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
-        Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
-        //Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        //final String TEST_URL = "jdbc:mysql://aau3z4pq3psz62.cx2uxgwhz5kj.us-east-1.rds.amazonaws.com:3306/admin_test?zeroDateTimeBehavior=convertToNull";
+        //Connection conn = DriverManager.getConnection(TEST_URL, USER, PASS);
+        Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         int result = 0;
         try{
             PreparedStatement stmt = conn.prepareStatement(
@@ -306,6 +269,7 @@ public class adminControls implements Serializable{
         catch (Exception e) {
             e.printStackTrace();
         }
+        
     }
     
     public void setEditInput() {

@@ -76,10 +76,6 @@ and open the template in the editor.
         </div>
     </div>
         
-    <div>
-        <img src="#{adminControls.picturePath}" alt="" style="width:100px;height:100px;"/>
-    </div>
-        
     <div id="addModal" class="w3-modal">
         <div class="w3-modal-content w3-card-4" style="max-width:580px">
             <div class="w3-container">
@@ -93,12 +89,16 @@ and open the template in the editor.
                         <b>Enter price</b>
                         <h:inputText id="addPrice" class="w3-input w3-border" value="#{adminControls.addPrice}" converterMessage="Please enter a number" />
                     </div>
+                    <div class="w3-section">
+                        <b>Enter Sub Menu Category</b>
+                        <h:inputText id="addSubMenu" class="w3-input w3-border" value="#{adminControls.addSubMenu}" />
+                    </div>
 
                     <div class="w3-section">
                         <b>Enter description</b>
                         <h:inputTextarea id="addDescription" class="w3-input w3-border" value="#{adminControls.addDescription}" />
                     </div>
-                    
+                       
                     <div class="w3-section">
                         <b>Upload a picture</b>
                         <p:fileUpload fileUploadListener="#{adminControls.handleFileUpload}" mode="advanced" dragDropSupport="true"
@@ -136,7 +136,7 @@ and open the template in the editor.
                     </div>
                     
                     <div class="w3-padding-16 w3-right">
-                        <p:commandLink class="btn btn-primary btn-md" oncomplete="editDish()"> Submit </p:commandLink>
+                        <p:commandLink class="btn btn-primary btn-md" action ="#{adminControls.editDish()}" oncomplete="editDish()"> Submit </p:commandLink>
                         <p:commandLink class="btn btn-default btn-md w3-margin-left" onclick="hideEditModal()"> Cancel </p:commandLink>
                     </div>
                     

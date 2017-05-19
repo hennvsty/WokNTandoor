@@ -17,6 +17,7 @@ function displayAddModal(){
     document.getElementById("addForm:addName").value = "";
     document.getElementById("addForm:addPrice").value = "0.0";
     document.getElementById("addForm:addDescription").value = "";
+    document.getElementById("addForm:addSubMenu").value = "";
     document.getElementById("addModal").style.display = 'block';
 }
 
