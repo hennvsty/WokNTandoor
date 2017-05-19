@@ -22,10 +22,11 @@ and open the template in the editor.
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>-->
         <script src="js/admin.js"></script>
         <style>
+            table { border-collapse: separate; border-spacing: 0 2em; }
             .menu-category { padding: 8px 14px; color: white; background-color: #b70e0e; }
             .menu-item-thumb { width: 100px; padding-right: 15px; }
-            .menu-item-info { width: 500px; padding-left: 15px; color: white; }
-            .menu-item-price { padding-left: 10px; padding-right: 36px; color: white; font-size: 18px; white-space: nowrap; }
+            .menu-item-info { width: 520px; padding-left: 15px; color: white; }
+            .menu-item-price { width: 120px; padding-left: 20px; color: white; font-size: 18px; white-space: nowrap; }
             .popup-title { padding: 0 20px; color:white; background-color: #c02704; }
         </style>
     </h:head>
@@ -40,17 +41,17 @@ and open the template in the editor.
         </h:form>
         
     <div id='orderContainer' style="background-color:#5d0d0b">
-        <div class="w3-content w3-padding-32" style="max-width:800px">
+        <div class="w3-content w3-padding-32" style="max-width:840px">
             <button class="w3-button w3-transparent w3-text-white tablinks w3-red" onclick="openTab(event, 'Full Menu')">Full Menu</button>
             <button class="w3-button w3-transparent w3-text-white tablinks" onclick="openTab(event, 'Lunch Menu')">Lunch Menu</button>
             <button onclick="displayAddModal()" id="orderButton" class="btn btn-default btn-md w3-right"><span class="glyphicon glyphicon-plus"></span> Add dish </button>
             
             <div id="Full Menu" class="food-menu">
                 <h5 class="menu-category" onclick="toggle('what')">What's Good</h5>
-                <table class="w3-section w3-content" id="what">
+                <table class="w3-content" id="what">
                     <tr>
                         <td class="menu-item-thumb">
-                            <h:graphicImage value="/images/ChickenTikkaMasala.jpg" style="width:100px; height:100px"/>
+                            <h:graphicImage value="images/ChickenTikkaMasala.jpg" style="width:100px; height:100px"/>
                         </td>
                         <td class="menu-item-info">
                             <div class="w3-large w3-padding-4" id="n7001">Chicken Tikka Masala</div>
@@ -67,10 +68,10 @@ and open the template in the editor.
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </p:commandLink>
                             </h:form>
-                            <!--<button class="btn btn-danger btn-sm" onclick="displayRemove()"><span class="glyphicon glyphicon-remove"></span></button>-->
                         </td>
                     </tr>
                 </table>
+<<<<<<< HEAD
                 
             </div>
         </div>
@@ -152,69 +153,57 @@ and open the template in the editor.
                 </h5>
                 <table class="w3-bordered w3-content" id="chat" style="display:none">
                     <h:outputText value = "#{adminControls.getEditableItems('Chat Corner', 'chatPrice')}" escape = "false"/>
+=======
+
+                <h5 class="menu-category" onclick="toggle('chat')">Chat Corner</h5>
+                <table class="w3-content" id="chat" style="display:none">
+                    <h:outputText value = "#{adminControls.getEditableItems('Chat Corner')}" escape = "false"/>
+>>>>>>> origin/master
                 </table>
                 
-                <h5 class="menu-category" onclick="toggle('kati')" >Kati Roll
-                    <span style="display: none; float: right;" id="katiPrice">0.00</span>
-                </h5>
-                <table class="w3-bordered w3-content" id="kati" style="display:none">
-                    <h:outputText value = "#{adminControls.getEditableItems('Kati Roll', 'katiPrice')}" escape = "false"/>
+                <h5 class="menu-category" onclick="toggle('kati')" >Kati Roll</h5>
+                <table class="w3-content" id="kati" style="display:none">
+                    <h:outputText value = "#{adminControls.getEditableItems('Kati Roll')}" escape = "false"/>
                 </table>
                 
-                <h5 class="menu-category" onclick="toggle('tanonfire')">Tandoor on Fire
-                    <span style="display: none; float: right;" id="tanPrice">0.00</span>
-                </h5>
-                <table class="w3-bordered w3-content" id="tanonfire" style="display:none">
-                    <h:outputText value = "#{adminControls.getEditableItems('Tandoor on Fire', 'tanPrice')}" escape = "false"/>
+                <h5 class="menu-category" onclick="toggle('tanonfire')">Tandoor on Fire</h5>
+                <table class="w3-content" id="tanonfire" style="display:none">
+                    <h:outputText value = "#{adminControls.getEditableItems('Tandoor on Fire')}" escape = "false"/>
                 </table>
                 
-                <h5 class="menu-category" onclick="toggle('mystic')">Mystic Masala (does not come with rice or naan)
-                    <span style="display: none; float: right;" id="mysticPrice">0.00</span>
-                </h5>
-                <table class="w3-bordered w3-content" id="mystic" style="display:none">
-                    <h:outputText value = "#{adminControls.getEditableItems('Mystic Masala', 'mysticPrice')}" escape = "false"/>
+                <h5 class="menu-category" onclick="toggle('mystic')">Mystic Masala (does not come with rice or naan)</h5>
+                <table class="w3-content" id="mystic" style="display:none">
+                    <h:outputText value = "#{adminControls.getEditableItems('Mystic Masala')}" escape = "false"/>
                 </table>
                 
-                <h5 class="menu-category" onclick="toggle('wokonfire')">Wok on Fire (does not come with rice or naan)
-                    <span style="display: none; float: right;" id="wokPrice">0.00</span>
-                </h5>
-                <table class="w3-bordered w3-content" id="wokonfire" style="display:none">
-                    <h:outputText value = "#{adminControls.getEditableItems('Wok on Fire', 'wokPrice')}" escape = "false"/>
+                <h5 class="menu-category" onclick="toggle('wokonfire')">Wok on Fire (does not come with rice or naan)</h5>
+                <table class="w3-content" id="wokonfire" style="display:none">
+                    <h:outputText value = "#{adminControls.getEditableItems('Wok on Fire')}" escape = "false"/>
                 </table>
                 
-                <h5 class="menu-category" onclick="toggle('pizza')">Pizza
-                    <span style="display: none; float: right;" id="pizzaPrice">0.00</span>
-                </h5>
-                <table class="w3-bordered w3-content" id="pizza" style="display:none">
-                    <h:outputText value = "#{adminControls.getEditableItems('Pizza', 'pizzaPrice')}" escape = "false"/>
+                <h5 class="menu-category" onclick="toggle('pizza')">Pizza</h5>
+                <table class="w3-content" id="pizza" style="display:none">
+                    <h:outputText value = "#{adminControls.getEditableItems('Pizza')}" escape = "false"/>
                 </table>
                 
-                <h5 class="menu-category" onclick="toggle('rice')">Rice
-                    <span style="display: none; float: right;" id="ricePrice">0.00</span>
-                </h5>
-                <table class="w3-bordered w3-content" id="rice" style="display:none">
-                    <h:outputText value = "#{adminControls.getEditableItems('Rice', 'ricePrice')}" escape = "false"/>
+                <h5 class="menu-category" onclick="toggle('rice')">Rice</h5>
+                <table class="w3-content" id="rice" style="display:none">
+                    <h:outputText value = "#{adminControls.getEditableItems('Rice')}" escape = "false"/>
                 </table>
                 
-                <h5 class="menu-category" onclick="toggle('naan')">Naan (don't forget to add the rice and naan to your order!)
-                    <span style="display: none; float: right;" id="naanPrice">0.00</span>
-                </h5>
-                <table class="w3-bordered w3-content" id="naan" style="display:none">
-                    <h:outputText value = "#{adminControls.getEditableItems('Naan', 'naanPrice')}" escape = "false"/>
+                <h5 class="menu-category" onclick="toggle('naan')">Naan (don't forget to add the rice and naan to your order!)</h5>
+                <table class="w3-content" id="naan" style="display:none">
+                    <h:outputText value = "#{adminControls.getEditableItems('Naan')}" escape = "false"/>
                 </table>
                 
-                <h5 class="menu-category" onclick="toggle('desserts')">Dessert
-                    <span style="display: none; float: right;" id="dessertPrice">0.00</span>
-                </h5>
-                <table class="w3-bordered w3-content" id="desserts" style="display:none">
-                    <h:outputText value = "#{adminControls.getEditableItems('Desserts', 'dessertPrice')}" escape = "false"/>
+                <h5 class="menu-category" onclick="toggle('desserts')">Dessert</h5>
+                <table class="w3-content" id="desserts" style="display:none">
+                    <h:outputText value = "#{adminControls.getEditableItems('Desserts')}" escape = "false"/>
                 </table>
                 
-                <h5 class="menu-category" onclick="toggle('beverages')">Beverages
-                    <span style="display: none; float: right;" id="beveragePrice">0.00</span>
-                </h5>
-                <table class="w3-bordered w3-content" id="beverages" style="display:none">
-                    <h:outputText value = "#{adminControls.getEditableItems('Beverages', 'beveragePrice')}" escape = "false"/>
+                <h5 class="menu-category" onclick="toggle('beverages')">Beverages</h5>
+                <table class="w3-content" id="beverages" style="display:none">
+                    <h:outputText value = "#{adminControls.getEditableItems('Beverages')}" escape = "false"/>
                 </table>
             </div>
             
@@ -300,7 +289,94 @@ and open the template in the editor.
             </div>
         </div>
     </div>
-        -->
+
+    <div>
+        <img src="#{adminControls.picturePath}" alt="" style="width:100px;height:100px;"/>
+    </div>
+        
+    <div id="addModal" class="w3-modal">
+        <div class="w3-modal-content w3-card-4" style="max-width:580px">
+            <div class="w3-container">
+                <h:form id="addForm">
+                    <div class="w3-section">
+                        <b>Select category</b><br/>
+                        <h:selectOneMenu id="addSubMenu" class="w3-select w3-border" value="#{adminControls.addSubMenu}">
+                            <!-- SELECT DISTINCT SubMenu FROM Dishes -->
+                            <f:selectItem itemValue="Chat Corner" itemLabel="Chat Corner" />
+                            <f:selectItem itemValue="Kati Roll" itemLabel="Kati Roll" />
+                            <f:selectItem itemValue="Tandoor on Fire" itemLabel="Tandoor on Fire" />
+                            <f:selectItem itemValue="Mystic Masala" itemLabel="Mystic Masala" />
+                            <f:selectItem itemValue="Wok on Fire" itemLabel="Wok on Fire" />
+                            <f:selectItem itemValue="Pizza" itemLabel="Pizza" />
+                            <f:selectItem itemValue="Rice" itemLabel="Rice" />
+                            <f:selectItem itemValue="Naan" itemLabel="Naan" />
+                            <f:selectItem itemValue="Desserts" itemLabel="Desserts" />
+                            <f:selectItem itemValue="Beverages" itemLabel="Beverages" />
+                        </h:selectOneMenu>
+                    </div>
+                    
+                    <div class="w3-section">
+                        <b>Enter name</b>
+                        <h:inputText id="addName" class="w3-input w3-border" value="#{adminControls.addName}" />
+                    </div>
+                    
+                    <div class="w3-section">
+                        <b>Enter price</b>
+                        <h:inputText id="addPrice" class="w3-input w3-border" value="#{adminControls.addPrice}" converterMessage="Please enter a number" />
+                    </div>
+
+                    <div class="w3-section">
+                        <b>Enter description</b>
+                        <h:inputTextarea id="addDescription" class="w3-input w3-border" value="#{adminControls.addDescription}" />
+                    </div>
+                    
+                    <div class="w3-section">
+                        <b>Upload a picture</b>
+                        <p:fileUpload fileUploadListener="#{adminControls.handleFileUpload}" mode="advanced" dragDropSupport="true"
+                                      update="messages" sizeLimit="1000000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{adminControls.uploadedPicture}" />
+                        <p:growl id="messages" showDetail="true" />
+                    </div>
+                    
+                    <div class="w3-padding-16 w3-right">
+                        <p:commandLink class="btn btn-primary btn-md" action="#{adminControls.addDish()}" oncomplete="hideAddModal(); location.reload();">
+                            <span class="glyphicon glyphicon-plus"></span> Add </p:commandLink>
+                        <p:commandLink class="btn btn-default btn-md w3-margin-left" onclick="hideAddModal()"> Cancel </p:commandLink>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </div>
+        
+    <div id="editModal" class="w3-modal">
+        <div class="w3-modal-content w3-card-4" style="max-width:580px">
+            <div class="w3-container">
+                <h:form id="editForm">
+                    <div class="w3-section">
+                        <b>Enter new name</b>
+                        <h:inputText id="editName" class="w3-input w3-border" value="#{adminControls.editName}" />
+                    </div>
+                    
+                    <div class="w3-section">
+                        <b>Enter new price</b>
+                        <h:inputText id="editPrice" class="w3-input w3-border" value="#{adminControls.editPrice}" converterMessage="Please enter a number" />
+                    </div>
+                    
+                    <div class="w3-section">
+                        <b>Enter new description</b>
+                        <h:inputTextarea id="editDescription" class="w3-input w3-border" value="#{adminControls.editDescription}" />
+                    </div>
+                    
+                    <div class="w3-padding-16 w3-right">
+                        <p:commandLink class="btn btn-primary btn-md" oncomplete="editDish(); location.reload();"> Submit </p:commandLink>
+                        <p:commandLink class="btn btn-default btn-md w3-margin-left" onclick="hideEditModal()"> Cancel </p:commandLink>
+                    </div>
+                    
+                    <input type="hidden" id="editId" value="" />
+                </h:form>
+            </div>
+        </div>
+    </div>
+    
     </body>
     <ui:include src="/WEB-INF/footer.xhtml"/>
 </html>
